@@ -1,3 +1,6 @@
+// AudioController.js
+// Author: Franz Alarcon
+
 "use strict"
 
 // AudioControllerClass
@@ -21,6 +24,7 @@ class AudioController {
         this._changingTime = false;
         this._startupCalled = false;
         this._eventTimeline = [];
+        this._continuousEvents = [];
         this._currTimelineIdx = null;
     }
 
@@ -40,12 +44,14 @@ class AudioController {
     }
 
     // Startup the AudioController handlers
-    // loadAudio() must have completed and all required HTML elements must be referenced
+    // loadAudio() must have completed and all required HTML elements must be
+    //      referenced
     // 
     // autoStart (bool) - Indicate if the audio should start playing
     startup(autoStart = true) {
         if (this._audioFile == null) {
-            console.log("AudioController Error: Tried start() without loading in audio.");
+            console.log("AudioController Error: Tried start() without loading"
+                    + " in audio.");
             return false;
         }
         if (this._startupCalled) {
@@ -59,10 +65,22 @@ class AudioController {
         */
 
         // Register event handlers
-        this.timeSlider.addEventListener("mousedown", this._timeChangeStartHandler.bind(this));
-        this.timeSlider.addEventListener("mouseup", this._timeChangeEndHandler.bind(this));
-        this._audioFile.addEventListener("timeupdate", this._audioTimeUpdateHandler.bind(this));
-        this.playButton.addEventListener("click", this._playPauseButtonHandler.bind(this));
+        this.timeSlider.addEventListener(
+                "mousedown", 
+                this._timeChangeStartHandler.bind(this)
+        );
+        this.timeSlider.addEventListener(
+                "mouseup", 
+                this._timeChangeEndHandler.bind(this)
+        );
+        this._audioFile.addEventListener(
+                "timeupdate", 
+                this._audioTimeUpdateHandler.bind(this)
+        );
+        this.playButton.addEventListener(
+                "click", 
+                this._playPauseButtonHandler.bind(this)
+        );
 
         if (this._eventTimeline.length > 0) {
             this._currTimelineIdx = 0;
@@ -78,36 +96,57 @@ class AudioController {
     }
 
     // Add an event to the timeline.
-    // This event is used to trigger the timelineEventHandler function during a specific time
-    //      during audio playback, and the event object is passed to the handler function.
+    // This event is used to trigger the timelineEventHandler function during a
+    //      specific time during audio playback, and the event object is passed
+    //      to the handler function.
     // Events must be added before startup() is called.
-    // The timelineEventHandler must be referenced before adding events to the timeline.
+    // The timelineEventHandler must be referenced before adding events to the
+    //      timeline.
     // 
-    // event (object) - Json object that contains the time and description of the event.
-    // Format:
-    //  time: --
-    //  arg: --
+    // event (object) - Json object that contains the time and description of
+    //      the event.
+    // Event JSON Format:
+    //      time (float):   Scheduled time when the event takes place
+    //      type (string):  The type of the event
+    //      targ (string):  The target of the event; usually an HTML element ID
+    //      continuous (bool, optional): Specifies if the event is continuous*
+    // 
+    // * Normal events can be skipped if the user manually changes the time
+    //      forward. Continuous events are executed if the user enters a range
+    //      in the timeline (between continuous events). On a manual time
+    //      change, the most previous continuous event will be called.
+    // * If the continuous property is not found in the event, it will be
+    //      assumed that the event is not continuous.
     addTimelineEvent(event) {
         if (this._startupCalled) {
-            console.log("AudioController Error: Cannot add timeline events after startup().");
+            console.log("AudioController Error: Cannot add timeline events"
+                    + " after startup().");
             return false;
         }
-        if (this.timelineEventhandler === null) {
-            console.log("AudioController Error: Must define timelineEventHandler before adding events.");
+        if (!this.timelineEventHandler) {
+            console.log("AudioController Error: Must define"
+                    + " timelineEventHandler before adding events.");
             return false;
         }
-        if (!("time" in event && "arg" in event)) {
-            console.log("AudioController Error: Timeline event incorrect format.");
+        if (!("time" in event && "type" in event && "targ" in event)) {
+            console.log("AudioController Error: Timeline event incorrect"
+                    + " format.");
             return false;
         }
 
         this._eventTimeline.push(event);
+
+        if ("continuous" in event && event["continuous"] === true) {
+            this._continuousEvents.push(event);
+        }
+
         return true;
     }
 
-    // Set the handler function that will be called when a timeline event is triggered.
-    // The handler function must accept an argument, which is the value of the "arg" key
-    //      of the triggered event.
+    // Set the handler function that will be called when a timeline event is 
+    //      triggered.
+    // The handler function must accept an argument, which is the value of the
+    //      "arg" key of the triggered event.
     setTimelineEventHadler(handler) {
         this.timelineEventHandler = handler;
     }
@@ -123,7 +162,7 @@ class AudioController {
         this._currTimelineIdx = null;
         let currTime = this._audioFile.currentTime;
         for (let i = 0; i < timelineLen; ++i) {
-            if (this._eventTimeline[i]["time"] >= currTime) {
+            if (+this._eventTimeline[i]["time"] >= currTime) {
                 this._currTimelineIdx = i;
                 break;
             }
@@ -136,9 +175,24 @@ class AudioController {
     }
 
     _timeChangeEndHandler() {
-        let nextTime = this.timeSlider.value / this.timeSlider.max * this._audioFile.duration;
+        let nextTime = this.timeSlider.value / this.timeSlider.max
+                * this._audioFile.duration;
         this._audioFile.currentTime = nextTime;
         this._seekcurrTimelineIdx();
+
+        // Execute previous continuous event
+        let eventIdx = null;
+        for (let i = 0; i < this._continuousEvents.length; ++i) {
+            if (+this._continuousEvents[i]["time"] >= this._audioFile.currentTime) {
+                break;
+            }
+
+            eventIdx = i;
+        }
+        if (eventIdx !== null) {
+            this.timelineEventHandler(this._continuousEvents[eventIdx]);
+        }
+
 
         if (this._audioPlaying) {
             this._audioFile.play();
@@ -149,7 +203,8 @@ class AudioController {
 
     _audioTimeUpdateHandler() {
         // Update time slider value
-        let nextVal = this._audioFile.currentTime / this._audioFile.duration * this.timeSlider.max;
+        let nextVal = this._audioFile.currentTime / this._audioFile.duration
+                * this.timeSlider.max;
         if (!this._changingTime) {
             this.timeSlider.value = nextVal;
         }
@@ -157,7 +212,7 @@ class AudioController {
         // Check for timeline event trigger
         if (this._currTimelineIdx !== null) {
             if (this._audioFile.currentTime >= +this._eventTimeline[this._currTimelineIdx]["time"]) {
-                this.timelineEventHandler(this._eventTimeline[this._currTimelineIdx]["arg"])
+                this.timelineEventHandler(this._eventTimeline[this._currTimelineIdx]);
 
                 ++this._currTimelineIdx;
                 if (this._currTimelineIdx >= this._eventTimeline.length) {

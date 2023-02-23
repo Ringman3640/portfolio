@@ -13,14 +13,18 @@ function startLoad() {
     ac.timeSlider = document.getElementById("time_range");
     ac.playButton = document.getElementById("play_button");
     ac.setTimelineEventHadler(timelineEventProcessor);
-    ac.addTimelineEvent({time: 1, arg: "Passed 1 second"});
-    ac.addTimelineEvent({time: 2, arg: "Passed 2 seconds"});
-    ac.addTimelineEvent({time: 4.5, arg: "Passed 4.5 seconds"});
-    ac.addTimelineEvent({time: 21.21, arg: "Passed 21.21 seconds"});
+    ac.addTimelineEvent({time: 1, type: "Passed 1 second", targ: null});
+    ac.addTimelineEvent({time: 2, type: "Passed 2 seconds", targ: null});
+    ac.addTimelineEvent({time: 4.5, type: "Passed 4.5 seconds", targ: null});
+    ac.addTimelineEvent({time: 21.21, type: "Passed 21.21 seconds", targ: null});
+
+    ac.addTimelineEvent({time: 0, type: "Before 1 min", targ: null, continuous: true});
+    ac.addTimelineEvent({time: 60, type: "After 1 min", targ: null, continuous: true});
+
     ac.loadAudio();
     ac.startup();
 }
 
-function timelineEventProcessor(arg) {
-    console.log(arg);
+function timelineEventProcessor(event) {
+    console.log(event.type);
 }
