@@ -82,6 +82,13 @@ class AudioController {
                 this._playPauseButtonHandler.bind(this)
         );
 
+        // Sort event timelines
+        let sortFunc = (a, b) => {
+            return a.time - b.time;
+        }
+        this._eventTimeline.sort(sortFunc);
+        this._continuousEvents.sort(sortFunc);
+
         if (this._eventTimeline.length > 0) {
             this._currTimelineIdx = 0;
         }
@@ -102,6 +109,8 @@ class AudioController {
     // Events must be added before startup() is called.
     // The timelineEventHandler must be referenced before adding events to the
     //      timeline.
+    // Events on the timeline will be sorted based on their time values. The
+    //      sorting occurs when startup() is called.
     // 
     // event (object) - Json object that contains the time and description of
     //      the event.
@@ -183,7 +192,8 @@ class AudioController {
         // Execute previous continuous event
         let eventIdx = null;
         for (let i = 0; i < this._continuousEvents.length; ++i) {
-            if (+this._continuousEvents[i]["time"] >= this._audioFile.currentTime) {
+            if (+this._continuousEvents[i]["time"]
+                    >= this._audioFile.currentTime) {
                 break;
             }
 
@@ -211,8 +221,10 @@ class AudioController {
 
         // Check for timeline event trigger
         if (this._currTimelineIdx !== null) {
-            if (this._audioFile.currentTime >= +this._eventTimeline[this._currTimelineIdx]["time"]) {
-                this.timelineEventHandler(this._eventTimeline[this._currTimelineIdx]);
+            if (this._audioFile.currentTime >= +this._eventTimeline
+                        [this._currTimelineIdx]["time"]) {
+                this.timelineEventHandler(
+                        this._eventTimeline[this._currTimelineIdx]);
 
                 ++this._currTimelineIdx;
                 if (this._currTimelineIdx >= this._eventTimeline.length) {
