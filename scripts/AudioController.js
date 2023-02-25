@@ -221,8 +221,6 @@ class AudioController {
         this._audioFile.currentTime = 0;
         this.timeSlider.value = 0;
 
-        console.log("balls");
-
         // Deregister event handlers
         this.timeSlider.removeEventListener(
             "mousedown", 
