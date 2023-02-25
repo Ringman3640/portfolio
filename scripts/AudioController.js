@@ -222,21 +222,27 @@ class AudioController {
         this.timeSlider.value = 0;
 
         // Deregister event handlers
-        this.timeSlider.removeEventListener(
-            "mousedown", 
-            this._timeChangeStartHandler
+        // I use addEventListener instead of removeEventListener here because
+        //      removeEventListener was not disabling events from the referenced
+        //      HTML elements for some reason. Howevever, calling
+        //      addEventListener again seems to toggle them off??? Imma just
+        //      stick with this since it seems to work. Javascript is pain and
+        //      suffering :)
+        this.timeSlider.addEventListener(
+                "mousedown", 
+                this._timeChangeStartHandler.bind(this)
         );
-        this.timeSlider.removeEventListener(
-            "mouseup", 
-            this._timeChangeEndHandler
+        this.timeSlider.addEventListener(
+                "mouseup", 
+                this._timeChangeEndHandler.bind(this)
         );
-        this._audioFile.removeEventListener(
-            "timeupdate", 
-            this._audioTimeUpdateHandler
+        this._audioFile.addEventListener(
+                "timeupdate", 
+                this._audioTimeUpdateHandler.bind(this)
         );
-        this.playButton.removeEventListener(
-            "click", 
-            this._playPauseButtonHandler
+        this.playButton.addEventListener(
+                "click", 
+                this._playPauseButtonHandler.bind(this)
         );
 
         this.started = false;
