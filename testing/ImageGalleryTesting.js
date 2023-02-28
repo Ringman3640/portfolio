@@ -5,14 +5,15 @@ document.addEventListener("DOMContentLoaded", init);
 let gallery = null;
 
 function init() {
-    let image1 = new Image(100, 100);
+    let image1 = new Image();
     image1.src = "sus.jpg";
 
-    let image2 = new Image(100, 100);
+    let image2 = new Image();
     image2.src = "sus2.png";
 
-    let image3 = new Image(100, 100);
+    let image3 = new Image();
     image3.src = "anim.gif";
+    image3.classList.add("pixel-art");
 
     let galleryElement = document.getElementById("imageGallery");
     gallery = new ImageGallery(galleryElement);

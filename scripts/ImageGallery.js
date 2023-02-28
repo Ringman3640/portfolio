@@ -42,7 +42,11 @@ class ImageGallery {
     // 
     // image (HTML element) - Reference to the image HTML element.
     addImage(image) {
-        this.imageGalleryElement.appendChild(image);
+        let imageContainer = document.createElement("div");
+        imageContainer.className = "image-container";
+        imageContainer.appendChild(image);
+
+        this.imageGalleryElement.appendChild(imageContainer);
         this._imageList.push(image);
 
         image.classList.add("gallery-image");
