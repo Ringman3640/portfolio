@@ -28,6 +28,8 @@ class ImageGallery {
         this._imageViewerElement.appendChild(this._imageViewerNextButton);
         this._imageViewerElement.appendChild(this._imageViewerExitButton);
 
+        // Set event listeners
+        document.addEventListener("keydown", this._keypressHandler.bind(this));
         this._imageViewerNextButton.addEventListener("click", 
                 this._viewerNextImage.bind(this));
         this._imageViewerPrevButton.addEventListener("click", 
@@ -46,6 +48,32 @@ class ImageGallery {
         image.classList.add("gallery-image");
         image.addEventListener("click", this._imageClicked.bind(this, 
                 this._imageList.length - 1));
+    }
+
+    // Handler for keydown events.
+    // Allows for image viewer button operation through keyboard.
+    _keypressHandler(key) {
+        if (this._imageViewerIdx == null) {
+            return;
+        }
+
+        // Right arrow
+        if (key.keyCode == 39 && !this._imageViewerNextButton.disabled) {
+            this._viewerNextImage();
+            return;
+        }
+
+        // Left arrow
+        if (key.keyCode == 37 && !this._imageViewerPrevButton.disabled) {
+            this._viewerPrevImage();
+            return;
+        }
+
+        // Esc
+        if (key.keyCode == 27) {
+            this._viewerExit();
+            return;
+        }
     }
 
     _imageClicked(imageIdx) {
@@ -94,10 +122,14 @@ class ImageGallery {
         this._imageViewerIdx = null;
     }
 
+    // Set the current image in the image viewer.
+    // Helper method
     _setViewerImage(image) {
         this._imageViewerFrame.replaceChildren(image.cloneNode(true));
     }
 
+    // Set the disabled status for the prev and next image viewer buttons.
+    // Helper method
     _setViewerButtonsDisabled() {
         if (+this._imageViewerIdx == +this._imageList.length - 1) {
             this._imageViewerNextButton.disabled = true;
