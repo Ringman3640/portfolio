@@ -18,7 +18,7 @@ function startLoad() {
     ac.timeSlider = document.getElementById("time_range");
     ac.playButton = document.getElementById("play_button");
     ac.setTimelineEventHadler(timelineEventProcessor);
-    ac.loadEvents("AudioControllerTestingEvents.json");
+    ac.loadEvents("AudioControllerTesting/events.json");
 
     ac.loadAudio();
 }

@@ -6,7 +6,7 @@
 class ImageGallery {
     constructor(imageGalleryElement) {
         // Public data
-        this.imageGalleryElement = imageGalleryElement
+        this.imageGalleryElement = imageGalleryElement;
 
         // Private data
         this._imageList = [];
