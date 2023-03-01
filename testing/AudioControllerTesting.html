@@ -30,5 +30,42 @@
                 <td><button id="stop_button">Stop Media</button></td>
             </tr>
         </table>
+
+        <p><br></p>
+
+        <h2>Event Testing Description</h2>
+        <p>
+            View the console dubugger in the browser to view the testing 
+            outputs. 
+            <br><br>
+
+            There are events that trigger during specific time intervals that 
+            simply state how much time has passed. These events occur at: 
+            <br><br>
+
+            1 second, 2 seconds, 3 seconds, 4.5 seconds, and 20 seconds.
+            <br><br><br>
+
+            To test simultaneous events, there is another event a 1 second that
+            will execute at the same time as the previous event at 1 second. It
+            has the following message:
+            <br><br>
+
+            "Simultaneous event at 1 second"
+            <br><br>
+
+            The "Load Media" button can also be pressed multiple times to reload
+            the time events. Each time event message will be repeated
+            simultaneously by the amount of time the button has been clicked.
+            <br><br><br>
+
+            To test continuous events, there is one continuous event that occurs
+            at the very beginning of the timeline (0 seconds). There is another
+            continuous event that occurs at 60 seconds. These events print a
+            message to say if the current time of the timeline is before or
+            after 1 minute. This is printed to the console whenever the user
+            manually changes time.
+            
+        </p>
     </body>
 </html>
