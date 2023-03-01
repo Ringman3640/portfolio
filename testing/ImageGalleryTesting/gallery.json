@@ -1,0 +1,36 @@
+{
+    "rootURL": "./",
+    "relativeURL": true,
+    "images": [
+        {
+            "url": "player_full_death1.gif",
+            "alt": "Player death animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_reloadmg_sidefront.gif",
+            "alt": "Player MG reload animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_roll_back.gif",
+            "alt": "Player back roll animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_roll_front.gif",
+            "alt": "Player front roll animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_roll_sideback.gif",
+            "alt": "player side back roll animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_roll_sidefront.gif",
+            "alt": "Player side front roll animation.",
+            "class": "pixel-art"
+        }
+    ]
+}

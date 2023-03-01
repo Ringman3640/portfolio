@@ -38,7 +38,57 @@ class ImageGallery {
                 this._viewerExit.bind(this));
     }
 
+    // Load in a list of images to the image gallery from a specified gallery
+    //      JSON file.
+    // The gallery JSON file must consist of a JSON object with an "images"
+    //      property. This property contains an array of image JSON objects,
+    //      which specify the URL of the location and, optionally, alt text and
+    //      classes.
+    // The gallery JSON object may also contain the optional property "rootURL", 
+    //      which specifies a string to prepend to each image URL. Indicate if
+    //      the URL is relative with the "relativeURL" bool property (assumed to
+    //      be false if not provided). If the URL is relative, the directory of
+    //      the images will be relative to the gallery JSON file.
+    //
+    // Gallery JSON Format:
+    //      images (array): List of image JSON objects
+    //      rootURL (string, optional): URL to prepend to each image URL
+    //      relativeURL (bool, optional): Indicate if the rootURL is relative
+    // 
+    // Image JSON Format:
+    //      url (string): URL path to the image
+    //      alt (string, optional): alt text to add to the image
+    //      class (string, optional): HTML class to add to the image
+    //      classes (array, optional): Array of HTML classes to add to the image
+    // 
+    // imagesURL (string) - URL to the JSON image list.
+    loadImages(galleryURL) {
+        if (galleryURL === undefined) {
+            console.error("ImageGallery: galleryURL is not specified when"
+                    + " calling loadImages().");
+            return;
+        }
+
+        let responseURL = "";
+        fetch(galleryURL)
+            .then(response => {
+                responseURL = response.url;
+                return response.json();
+            })
+            .then(galleryJson => {
+                this._galleryJsonLoadHandler(galleryJson, responseURL);
+            })
+            .catch(error => {
+                console.error("ImageGallery: Unable to load images from JSON"
+                        + " file, \n", error);
+            })
+    }
+
     // Add an image to the gallery.
+    // The image will be contained within a div with the class
+    //      "image-container". This div will then be appended to the specified
+    //      image gallery element as a child. The image will have the class
+    //      "gallery-image".
     // 
     // image (HTML element) - Reference to the image HTML element.
     addImage(image) {
@@ -77,6 +127,70 @@ class ImageGallery {
         if (key.keyCode == 27) {
             this._viewerExit();
             return;
+        }
+    }
+
+
+    // Handler for processing the gallery JSON object fetched from loadImages().
+    // Loads images from the gallery JSON object list and adds them to the
+    //      image gallery element.
+    //
+    // galleryJson (JSON) - Gallery JSON object fetched from the gallery JSON
+    //      file.
+    // galleryURL (string) - URL path to the gallery JSON file*.
+    //
+    // *galleryURL is needed to get the rootURL for relative paths.
+    _galleryJsonLoadHandler(galleryJson, galleryURL) {
+        if (!("images" in galleryJson)) {
+            console.error("ImageGallery: Gallery JSON file does not have"
+                    +" \"images\" property.");
+            return;
+        }
+
+        let rootURL = "";
+        if ("rootURL" in galleryJson) {
+            if ("relativeURL" in galleryJson && galleryJson.relativeURL) {
+                let urlPath = new URL(galleryJson.rootURL, galleryURL);
+                rootURL = urlPath.toString();
+            }
+            else {
+                rootURL = galleryJson.rootURL;
+            }
+            
+            if (!rootURL.endsWith("/")) {
+                rootURL += "/";
+            }
+        }
+
+        for (let imageJson of galleryJson.images) {
+            if (!("url" in imageJson)) {
+                console.error("ImageGallery: Image JSON object does not have"
+                        + " \"url\" property from gallery JSON");
+                continue;
+            }
+
+            let image = new Image();
+            if ("alt" in imageJson) {
+                image.alt = imageJson.alt;
+            }
+            if ("class" in imageJson) {
+                image.className = imageJson.class;
+            }
+            if ("classes" in imageJson) {
+                for (let className of imageJson.classes) {
+                    image.classList.add(className);
+                }
+            }
+
+            let self = this;
+            image.onload = function() {
+                self.addImage(this);
+            }
+            image.onerror = function(error) {
+                console.error("ImageGallery: Cannot find image from given url"
+                        + " in gallery JSON file.");
+            }
+            image.src = rootURL + imageJson.url;
         }
     }
 
