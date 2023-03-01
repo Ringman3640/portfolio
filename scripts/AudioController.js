@@ -70,7 +70,6 @@ class AudioController {
         let self = this;
         req.onload = function() {
             if (this.status !== 200) {
-                console.log(this.status);
                 console.error("AudioController: Cannot load events file.");
                 return;
             }
@@ -198,7 +197,6 @@ class AudioController {
             this._currTimelineIdx = 0;
         }
         if (autoStart) {
-            console.log("auto starting");
             this._audioFile.play();
             this._audioPlaying = true;
         }
@@ -340,9 +338,11 @@ class AudioController {
         }
 
         // Check for timeline event trigger
-        if (this._currTimelineIdx !== null) {
+        // While loop used to execute events that happen at the same time
+        while (this._currTimelineIdx !== null) {
             if (this._audioFile.currentTime >= +this._eventTimeline
-                        [this._currTimelineIdx]["time"]) {
+                    [this._currTimelineIdx]["time"]) {
+
                 this.timelineEventHandler(
                         this._eventTimeline[this._currTimelineIdx]);
 
@@ -350,6 +350,9 @@ class AudioController {
                 if (this._currTimelineIdx >= this._eventTimeline.length) {
                     this._currTimelineIdx = null;
                 }
+            }
+            else {
+                return;
             }
         }
     }
