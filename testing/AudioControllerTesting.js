@@ -6,9 +6,12 @@ document.addEventListener("DOMContentLoaded", init);
 let ac = new AudioController("../resources/audio/sus.mp3");
 
 function init() {
-    document.getElementById("load_button").addEventListener("click", startLoad);
-    document.getElementById("start_button").addEventListener("click", startupMedia);
-    document.getElementById("stop_button").addEventListener("click", stopMedia);
+    document.getElementById("load_button")
+            .addEventListener("click", startLoad);
+    document.getElementById("start_button")
+            .addEventListener("click", startupMedia);
+    document.getElementById("stop_button")
+            .addEventListener("click", stopMedia);
 }
 
 function startLoad() {
