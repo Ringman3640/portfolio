@@ -55,6 +55,8 @@ class AudioController {
     }
 
     // Load in a list of events from a specified JSON file.
+    // The JSON file must consist of a JSON object with an "events" property.
+    //      This property contains an array of event JSON objects.
     // 
     // eventsURL (string) - URL path to the events JSON file.
     loadEvents(eventsURL) {
