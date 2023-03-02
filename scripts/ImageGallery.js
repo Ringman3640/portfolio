@@ -150,6 +150,8 @@ class ImageGallery {
         let rootURL = "";
         if ("rootURL" in galleryJson) {
             if ("relativeURL" in galleryJson && galleryJson.relativeURL) {
+                // THIS TOOK SO LONG TO FIGURE OUT IT IS 2 AM
+                // I HATE URLS
                 let urlPath = new URL(galleryJson.rootURL, galleryURL);
                 rootURL = urlPath.toString();
             }
