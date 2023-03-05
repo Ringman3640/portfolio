@@ -156,7 +156,44 @@ class ImageGallery {
         this._imageViewerElement.appendChild(this._imageViewerNextButton);
         this._imageViewerElement.appendChild(this._imageViewerExitButton);
 
-        this._testList = new ImageList();
+        // Apply left arrow svg to prev button
+        fetch("../resources/images/image-gallery-assets/left-arrow.svg")
+            .then(response => {
+                return response.text();
+            })
+            .then(svgText => {
+                this._imageViewerPrevButton.innerHTML = svgText;
+            })
+            .catch(error => {
+                console.error("ImageGallery: Could not get image gallery left"
+                        + " arrow svg file, \n" + error);
+            });
+
+        // Apply right arrow svg to next button
+        fetch("../resources/images/image-gallery-assets/right-arrow.svg")
+            .then(response => {
+                return response.text();
+            })
+            .then(svgText => {
+                this._imageViewerNextButton.innerHTML = svgText;
+            })
+            .catch(error => {
+                console.error("ImageGallery: Could not get image gallery right"
+                        + " arrow svg file, \n" + error);
+            });
+
+        // Apply cross symbol svg to exit button
+        fetch("../resources/images/image-gallery-assets/cross-thick.svg")
+            .then(response => {
+                return response.text();
+            })
+            .then(svgText => {
+                this._imageViewerExitButton.innerHTML = svgText;
+            })
+            .catch(error => {
+                console.error("ImageGallery: Could not get image gallery cross"
+                        + " svg file, \n" + error);
+            });
 
         // Set event listeners
         document.addEventListener("keydown", this._keypressHandler.bind(this));

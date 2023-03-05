@@ -31,6 +31,11 @@
             "url": "player_full_roll_sidefront.gif",
             "alt": "Player side front roll animation.",
             "class": "pixel-art"
+        },
+        {
+            "url": "boss_tentacle_attack_front.gif",
+            "alt": "Boss tentacle attack front animation.",
+            "class": "pixel-art"
         }
     ]
 }

@@ -4,26 +4,44 @@
         <script type="module" src="ImageGalleryTesting.js"></script>
         <link rel="icon" type="image/x-icon" href="../favicon.ico">
         <style>
+            :root {
+                --content-width: 80vw
+            }
+
+            div.image-gallery {
+                background-color:rgba(99, 99, 99, 0.3);
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2px;
+                border-width: 0px;
+            }
+
+            .image-gallery > .image-container {
+                background-color: rgba(255, 255, 255, 0.3);
+                backdrop-filter: blur(1px);
+                width: 8vw;
+                height: 8vw;
+                padding: 2px;
+            }
+
+            .image-gallery > .image-container:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+                filter: brightness(2);
+            }
+
             .image-container > img {
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
+                object-fit: cover;
             }
 
             .image-container > img.pixel-art {
                 image-rendering: pixelated;
             }
 
-            div.image-container {
-                width: 100px;
-                height: 100px;
-            }
-
-            .image-gallery {
-                display: flex;
-            }
-
             .image-viewer {
+                background-color: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(2px);
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -31,24 +49,77 @@
                 width: 100vw;
             }
 
-            .image-viewer-canvas {
+            .image-viewer > .image-viewer-frame {
+                /*
+                display: block;
+                height: min(80vh, 80vw);
+                width: min(80vh, 80vw);
+                margin: auto;
+                */
+                display: flex;
+                justify-content: center;
+                height: 100%;
+                width: 100%;
+            }
+
+            .image-viewer-frame > img.gallery-image {
+                width: 80%;
+                height: 80%;
+                object-fit: contain;
+            }
+
+            .image-viewer-frame > img.pixel-art {
+                image-rendering: pixelated;
+            }
+
+            .image-viewer > .image-viewer-prev,
+            .image-viewer > .image-viewer-next {
                 position: fixed;
-                top: 0;
+                background-color: rgba(255, 255, 255, 0);
+                border-width: 0px;
+                height: 100px;
+                width: 60px;
+                top: 50%;
+                transform: translateY(-50%);
+                transition: background-color 0.2s linear;  
+            }
+
+            .image-viewer > .image-viewer-prev:hover,
+            .image-viewer > .image-viewer-next:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .image-viewer > .image-viewer-prev:disabled,
+            .image-viewer > .image-viewer-next:disabled {
+                display: none;
+            }
+
+            .image-viewer > .image-viewer-prev {
                 left: 0;
-                height: 100vh;
-                width: 100vw;
             }
 
-            .image-viewer-prev {
-                
+            .image-viewer > .image-viewer-next {
+                right: 0;
             }
 
-            .image-viewer-next {
-                
+            .image-viewer > .image-viewer-exit {
+                position: fixed;
+                background-color: rgba(255, 255, 255, 0);
+                border-width: 0px;
+                height: 60px;
+                width: 60px;
+                top: 0;
+                right: 0;
+                transition: background-color 0.2s linear;
             }
 
-            .image-viewer-exit {
-                
+            .image-viewer > .image-viewer-exit:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .image-viewer-exit > svg {
+                width: 60%;
+                height: 60%;
             }
         </style>
     </head>
