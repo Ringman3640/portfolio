@@ -1,0 +1,162 @@
+/*
+Global Style Sheet
+Style sheet for general use on all website pages.
+Author: Franz Alarcon
+*/
+
+/* Fonts */
+@font-face {
+    font-family: "Roboto";
+    src: url(../resources/fonts/roboto/Roboto-Bold.ttf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(../resources/fonts/roboto/Roboto-BoldItalic.ttf);
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(../resources/fonts/roboto/Roboto-Medium.ttf);
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(../resources/fonts/roboto/Roboto-MediumItalic.ttf);
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(../resources/fonts/roboto/Roboto-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(../resources/fonts/roboto/Roboto-Italic.ttf);
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(../resources/fonts/roboto/Roboto-Light.ttf);
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(../resources/fonts/roboto/Roboto-LightItalic.ttf);
+    font-weight: 300;
+    font-style: italic;
+}
+
+
+/* Root Variables */
+:root {
+    --primary-color-light: rgba(57, 138, 214, 0.8);
+    --primary-color-dark: rgba(19, 87, 175, 1);
+    --secondary-color-light: rgba(152, 94, 170, 0.8);
+    --secondary-color-dark: rgba(120, 71, 167, 1);
+}
+
+
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+}
+
+
+/* Comon Element Defaults */
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+p {
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+
+/* Home Page */
+#home-page-header {
+    background-color: var(--primary-color-light);
+    left: 0;
+    width: 100vw;
+    height: 80vh;
+    padding: 0px;
+    margin: 0px;
+}
+
+#home-page-main {
+    width: 80vw;
+    margin: auto;
+}
+
+.main-section-header {
+    border-left: solid 3px var(--secondary-color-light);
+    padding-left: 1px;
+}
+
+#home-page-projects {
+    
+}
+
+div.project-listings {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: var(--secondary-color-dark);
+    width: 100%;
+    height: max-content;
+    margin: auto;
+    padding: 5px;
+}
+
+a.project-card {
+    display: block;
+    background-color: var(--secondary-color-light);
+    width: 260px;
+    height: 290px;
+    padding: 5px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+a.project-card:hover {
+    height: max-content;
+}
+
+h3.project-title {
+    font-size: 24px;
+    height: 30px;
+}
+
+div.project-image-container {
+    box-sizing: border-box;
+    width: 250px;
+    height: 250px;
+    margin: auto;
+}
+
+img.project-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+p.project-description {
+    margin-top: 10px;
+}
