@@ -1,0 +1,91 @@
+{
+    "rootURL": "../../resources/images/outbreak-pto-project/character-gallery",
+    "relativeURL": true,
+    "images": [
+        {
+            "url": "player_full_idle_sidefront.gif",
+            "alt": "Player sidefront idle animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_idle_sideback.gif",
+            "alt": "Player sideback idle animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_run_sidefront.gif",
+            "alt": "Player sidefront run animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_run_sideback.gif",
+            "alt": "Player sideback run animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_roll_sidefront.gif",
+            "alt": "Player sidefront roll animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_roll_sideback.gif",
+            "alt": "Player sideback roll animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_flinch_sidefront.gif",
+            "alt": "Player flinch animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_death1.gif",
+            "alt": "Player death animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_reloadmg_sidefront.gif",
+            "alt": "Player MG reload animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_reloadar_sidefront.gif",
+            "alt": "Player AR reload animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "player_full_reloadpistol_sidefront.gif",
+            "alt": "Player pistol reload animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "zombie_idle_front.gif",
+            "alt": "Zombie front idle animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "zombie_idle_back.gif",
+            "alt": "Zombie back idle animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "zombie_walk_front.gif",
+            "alt": "Zombie front walk animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "zombie_walk_back.gif",
+            "alt": "Zombie back walk animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "boss_tentacle_attack_front.gif",
+            "alt": "Boss front tentacle attack animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "boss_tentacle_attack_back.gif",
+            "alt": "Boss back tentacle attack animation.",
+            "class": "pixel-art"
+        }
+    ]
+}

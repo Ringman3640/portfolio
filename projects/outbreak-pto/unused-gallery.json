@@ -1,0 +1,41 @@
+{
+    "rootURL": "../../resources/images/outbreak-pto-project/unused-gallery",
+    "relativeURL": true,
+    "images": [
+        {
+            "url": "vent.gif",
+            "alt": "Vent opening animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "corpse_1.png",
+            "alt": "Corpse design 1 sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "corpse_2.png",
+            "alt": "Corpse design 2 sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "corpse_3.png",
+            "alt": "Corpse design 3 sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "corpse_4.png",
+            "alt": "Corpse design 4 sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "water_puddles.png",
+            "alt": "Water puddles sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "metal_box_1.png",
+            "alt": "Metal box sprite asset.",
+            "class": "pixel-art"
+        }
+    ]
+}

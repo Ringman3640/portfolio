@@ -1,0 +1,91 @@
+{
+    "rootURL": "../../resources/images/outbreak-pto-project/other-gallery",
+    "relativeURL": true,
+    "images": [
+        {
+            "url": "metal_sheet_sidedoor_opening_full.gif",
+            "alt": "Metal side door opening animation.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "metal_sheet_wall.png",
+            "alt": "Metal sheet wall front sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "metal_sheet_wall_angled.png",
+            "alt": "Metal sheet wall angled sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "metal_sheet_wall_top.png",
+            "alt": "Metal sheet top sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "metal_sheet_wall_angled_top.png",
+            "alt": "Metal sheet top angled sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "metal_grate.png",
+            "alt": "Metal grate floor sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "metal_sheet.png",
+            "alt": "Metal sheet floor sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "miscellaneous_1.png",
+            "alt": "Miscellaneous floor sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "rbg_wires.png",
+            "alt": "RGB wires sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "weapon_ar_idle.png",
+            "alt": "AR weapon asset.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "weapon_ar_fire.png",
+            "alt": "AR weapon firing animation sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "control_sprites.png",
+            "alt": "Button control icons sprite sheet.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "crosshair.png",
+            "alt": "Crosshair sprite asset.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "text_border.png",
+            "alt": "Text border box sprite asset.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "health_bar_top.png",
+            "alt": "Front health bar sprite asset.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "health_bar_fill.png",
+            "alt": "Fill health bar sprite asset.",
+            "class": "pixel-art"
+        },
+        {
+            "url": "health_bar_back.png",
+            "alt": "Back health bar sprite asset.",
+            "class": "pixel-art"
+        }
+    ]
+}

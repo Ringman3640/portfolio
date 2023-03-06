@@ -1,0 +1,11 @@
+{
+    "rootURL": "./",
+    "relativeURL": true,
+    "images": [
+        {
+            "url": "",
+            "alt": "",
+            "class": ""
+        }
+    ]
+}
