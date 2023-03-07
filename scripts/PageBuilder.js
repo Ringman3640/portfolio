@@ -7,6 +7,25 @@ import { AudioController } from "./AudioController.js"
 
 "use strict"
 
+// Flash an element on the page for a short duration.
+// Use to grab the viewer's attention towards a specific element.
+function flashElement(element) {
+    let originalBackground = element.style.backgroundColor;
+    let originalTransition = element.style.transition;
+
+    element.style.transition = "background 0.2s";
+    element.style.backgroundColor = "rgb(255, 244, 214)";
+
+    setTimeout(function() {
+        element.style.transition = "background 0.6s";
+        element.style.backgroundColor = originalBackground;
+
+        setTimeout(function() {
+            element.style.transition = originalTransition;
+        }, 600);
+    }, 200);
+}
+
 // VirtualTourBuilder Class
 // Used to construct the virtual tour system in a webpage.
 class VirtualTourBuilder {
@@ -40,6 +59,7 @@ class VirtualTourBuilder {
         // Load audio
         this._audio = new AudioController();
         this._audio.audioURL = audioURL;
+        this._audio.timelineEventHandler = this._eventHandler;
         this._audio.loadAudio();
         
         // Controller box
@@ -145,6 +165,10 @@ class VirtualTourBuilder {
         this._exitButton.replaceChildren(this._exitImageDiv);
     }
 
+    loadEvents(eventsURL) {
+        this._audio.loadEvents(eventsURL);
+    }
+
     startVirtualTour() {
         // TODO: temp
         document.body.appendChild(this._controlsBox);
@@ -167,16 +191,33 @@ class VirtualTourBuilder {
     }
 
     _eventHandler(event) {
-        if (event.type == "") {
+        let target = document.getElementById(event.targ);
+        let invalidTargetError = "PageBuilder: Default event handler for"
+                + "virtual tour could not find target \"" + event.target + "\"";
 
-            return;
+        if (event.type.includes("highlight")) {
+            if (target == null) {
+                console.error(invalidTargetError);
+                return;
+            }
+
+            flashElement(target);
         }
+        if (event.type.includes("focus")) {
+            if (target == null) {
+                console.error(invalidTargetError);
+                return;
+            }
 
-        console.error("PageBuilder: Default event handler for virtual tour"
-                + " cannot resolve event of type " + event.type);
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
     }
-    
 }
+
+
 
 export { VirtualTourBuilder }
 

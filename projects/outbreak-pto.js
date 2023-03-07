@@ -27,4 +27,5 @@ function init() {
     // Build virtual tour
     pageBuilder.buildVirtualTour("../resources/audio/outbreak-pto-project/"
             + "outbreak-pto-page-narration.mp3");
+    pageBuilder.loadEvents("./outbreak-pto/events.json");
 }

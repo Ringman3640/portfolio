@@ -1,0 +1,64 @@
+{
+    "events": [
+        {
+            "time": 8.7,
+            "type": "highlight-focus",
+            "targ": "outbreak-pto-overview",
+            "continuous": true
+        },
+        {
+            "time": 28.5,
+            "type": "highlight-focus",
+            "targ": "outbreak-pto-tools",
+            "continuous": true
+        },
+        {
+            "time": 44.5,
+            "type": "highlight-focus",
+            "targ": "outbreak-pto-description",
+            "continuous": true
+        },
+        {
+            "time": 121.1,
+            "type": "highlight-focus",
+            "targ": "outbreak-pto-my-part",
+            "continuous": true
+        },
+        {
+            "time": 188.5,
+            "type": "highlight-focus",
+            "targ": "character-gallery-container",
+            "continuous": true
+        },
+        {
+            "time": 191,
+            "type": "highlight-focus",
+            "targ": "other-gallery-container",
+            "continuous": true
+        },
+        {
+            "time": 195.5,
+            "type": "highlight-focus",
+            "targ": "unused-gallery-container",
+            "continuous": true
+        },
+        {
+            "time": 216.5,
+            "type": "highlight-focus",
+            "targ": "outbreak-pto-went-well",
+            "continuous": true
+        },
+        {
+            "time": 329,
+            "type": "highlight-focus",
+            "targ": "outbreak-pto-problems",
+            "continuous": true
+        },
+        {
+            "time": 509.5,
+            "type": "highlight-focus",
+            "targ": "outbreak-pto-learned",
+            "continuous": true
+        }
+    ]
+}
