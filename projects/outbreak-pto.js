@@ -1,15 +1,17 @@
 import { ImageGallery } from "../scripts/ImageGallery.js"
-//import { DefaultPageBuilder } from "../scripts/DefaultPageBuilder.js"
+import { VirtualTourBuilder } from "../scripts/PageBuilder.js"
 
 "use strict"
 
-document.addEventListener("DOMContentLoaded", init);
-
+let pageBuilder = new VirtualTourBuilder();
 let characterGallery = null;
 let otherGallery = null;
 let unusedGallery = null;
 
+document.addEventListener("DOMContentLoaded", init);
+
 function init() {
+    // Load image galleries
     characterGallery = new ImageGallery(
             document.getElementById("character-gallery"));
     characterGallery.loadImages("./outbreak-pto/character-gallery.json");
@@ -21,4 +23,8 @@ function init() {
     unusedGallery = new ImageGallery(
             document.getElementById("unused-gallery"));
     unusedGallery.loadImages("./outbreak-pto/unused-gallery.json");
+
+    // Build virtual tour
+    pageBuilder.buildVirtualTour("../resources/audio/outbreak-pto-project/"
+            + "outbreak-pto-page-narration.mp3");
 }

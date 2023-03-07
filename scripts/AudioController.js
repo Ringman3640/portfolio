@@ -19,6 +19,7 @@ class AudioController {
 
         // Public state data
         this.started = false;
+        this.paused = true;
 
         // Private data
         this._audioFile = null;
@@ -201,6 +202,7 @@ class AudioController {
         if (autoStart) {
             this._audioFile.play();
             this._audioPlaying = true;
+            this.paused = false;
         }
         
         this.timeSlider.val = 0;
@@ -363,10 +365,12 @@ class AudioController {
         if (this._audioPlaying) {
             this._audioFile.pause();
             this._audioPlaying = false;
+            this.paused = true;
         }
         else {
             this._audioFile.play();
             this._audioPlaying = true;
+            this.paused = false;
         }
     }
 }
