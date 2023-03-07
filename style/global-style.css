@@ -80,7 +80,6 @@ body {
     font-weight: normal;
     font-size: 18px;
     margin: 0px;
-    position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -160,6 +159,11 @@ div.section-row-combiner > div {
     filter: brightness(50%);
 }
 
+.page-banner {
+    width: 100%;
+
+}
+
 
 /* ImageGallery */
 div.image-gallery-container {
@@ -196,7 +200,7 @@ div.image-gallery {
     object-fit: cover;
 }
 
-.image-container > img.pixel-art {
+img.pixel-art {
     image-rendering: pixelated;
 }
 
@@ -281,6 +285,7 @@ div.image-gallery {
 }
 
 
+
 /* PageBuilder */
 #virtual-tour-control-box {
     position: fixed;
@@ -324,6 +329,14 @@ div.image-gallery {
 
 #virtual-tour-icon-container > svg > path {
     fill: var(--primary-color-light);
+}
+
+#virtual-tour-icon-container[data-enabled="false"] > svg {
+    fill: rgba(99, 99, 99, 1);
+}
+
+#virtual-tour-icon-container[data-enabled="false"] > svg > path {
+    fill: rgba(99, 99, 99, 1);
 }
 
 #virtual-tour-time-slider {

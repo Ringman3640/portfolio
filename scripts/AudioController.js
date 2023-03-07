@@ -15,11 +15,14 @@ class AudioController {
         this.audioURL = audioURL;
         this.timeSlider = null;
         this.playButton = null;
-        this.timelineEventHandler = null;
 
         // Public state data
         this.started = false;
         this.paused = true;
+
+        // External handlers
+        this.timelineEventHandler = null;
+        this.playToggleHandler = null;
 
         // Private data
         this._audioFile = null;
@@ -204,6 +207,10 @@ class AudioController {
             this._audioPlaying = true;
             this.paused = false;
         }
+
+        if (this.playToggleHandler !== null) {
+            this.playToggleHandler();
+        }
         
         this.timeSlider.val = 0;
         this.started = true;
@@ -371,6 +378,10 @@ class AudioController {
             this._audioFile.play();
             this._audioPlaying = true;
             this.paused = false;
+        }
+
+        if (this.playToggleHandler !== null) {
+            this.playToggleHandler();
         }
     }
 }

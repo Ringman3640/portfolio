@@ -38,6 +38,7 @@ class VirtualTourBuilder {
         this._audio = null;
         this._controlsBox = null;
         this._playButton = null;
+        this._scrollButton = null;
         this._exitButton = null;
         this._timeSlider = null;
         this._startupButton = null;
@@ -45,9 +46,17 @@ class VirtualTourBuilder {
         // Play/pause images
         this._playImageDiv = null;
         this._pauseImageDiv = null;
+        this._scrollImageDiv = null;
         this._exitImageDiv = null;
+
+        // State data
+        this._autoScroll = true;
     }
 
+    // Build the virtual tour system within the webpage.
+    // The virtual tour is started with the startup button, which will be
+    //      created on the page during the build. The button will be appended to
+    //      an HTML element with id "virtual-tour-startup-container".
     buildVirtualTour(audioURL) {
         if (this._built) {
             return;
@@ -59,7 +68,9 @@ class VirtualTourBuilder {
         // Load audio
         this._audio = new AudioController();
         this._audio.audioURL = audioURL;
-        this._audio.timelineEventHandler = this._eventHandler;
+        this._audio.timelineEventHandler = this._eventHandler.bind(this);
+        this._audio.playToggleHandler = 
+                this._updatePlayPauseButtonIcon.bind(this);
         this._audio.loadAudio();
         
         // Controller box
@@ -76,9 +87,15 @@ class VirtualTourBuilder {
         this._playButton.id = "virtual-tour-play-button";
         this._playButton.classList.add("virtual-tour-control-button");
         this._audio.playButton = this._playButton;
-        this._playButton.addEventListener("click", 
-                this._updatePlayPauseButtonIcon.bind(this));
         buttonGroup.appendChild(this._playButton);
+
+        // Auto Scroll Button
+        this._scrollButton = document.createElement("button");
+        this._scrollButton.id = "virtual-tour-auto-scroll-button";
+        this._scrollButton.classList.add("virtual-tour-control-button");
+        this._scrollButton.addEventListener("click",
+                this._toggleAutoScroll.bind(this));
+        buttonGroup.appendChild(this._scrollButton);
         
         // Exit Button
         this._exitButton = document.createElement("button");
@@ -161,8 +178,38 @@ class VirtualTourBuilder {
                         + " file, \n" + error);
             });
 
+        this._scrollImageDiv = document.createElement("div");
+        this._scrollImageDiv.id = "virtual-tour-icon-container";
+        fetch("../resources/images/page-builder-assets/auto-scroll-button.svg")
+            .then(response => {
+                return response.text();
+            })
+            .then(svgText => {
+                this._scrollImageDiv.innerHTML = svgText;
+            })
+            .catch(error => {
+                console.error("PageBuilder: Could not get exit button svg"
+                        + " file, \n" + error);
+            });
+
         this._playButton.replaceChildren(this._playImageDiv);
+        this._scrollButton.replaceChildren(this._scrollImageDiv);
         this._exitButton.replaceChildren(this._exitImageDiv);
+
+        // Apply auto scroll state
+        let scrollState = localStorage.getItem("autoScroll");
+        if (scrollState === null) {
+            this.autoScroll = true;
+            localStorage.setItem("autoScroll", "true")
+        }
+        else if (scrollState == "true") {
+            this._autoScroll = true;
+            this._scrollImageDiv.dataset.enabled = "true";
+        }
+        else {
+            this._autoScroll = false;
+            this._scrollImageDiv.dataset.enabled = "false";
+        }
     }
 
     loadEvents(eventsURL) {
@@ -183,10 +230,23 @@ class VirtualTourBuilder {
 
     _updatePlayPauseButtonIcon() {
         if (this._audio.paused) {
-            this._playButton.replaceChildren(this._pauseImageDiv);
+            this._playButton.replaceChildren(this._playImageDiv);
         }
         else {
-            this._playButton.replaceChildren(this._playImageDiv);
+            this._playButton.replaceChildren(this._pauseImageDiv);
+        }
+    }
+
+    _toggleAutoScroll() {
+        if (this._autoScroll) {
+            this._autoScroll = false;
+            this._scrollImageDiv.dataset.enabled = "false";
+            localStorage.setItem("autoScroll", "false");
+        }
+        else {
+            this._autoScroll = true;
+            this._scrollImageDiv.dataset.enabled = "true";
+            localStorage.setItem("autoScroll", "true");
         }
     }
 
@@ -208,6 +268,9 @@ class VirtualTourBuilder {
                 console.error(invalidTargetError);
                 return;
             }
+            if (!this._autoScroll) {
+                return;
+            }
 
             target.scrollIntoView({
                 behavior: "smooth",
@@ -216,8 +279,6 @@ class VirtualTourBuilder {
         }
     }
 }
-
-
 
 export { VirtualTourBuilder }
 
