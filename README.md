@@ -2,4 +2,4 @@
 
 Hi! This is my personal portfolio website to showcase my projects. It is currently in-development, so there is not much...
 
-Website Link: [https://franzalarcon.net/](https://franzalarcon.net/)
+Website Link: [https://franzalarcon.net/home](https://franzalarcon.net/home)
