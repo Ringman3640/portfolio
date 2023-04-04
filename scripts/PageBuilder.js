@@ -280,7 +280,32 @@ class VirtualTourBuilder {
     }
 }
 
-export { VirtualTourBuilder }
+// initCopyClipboardButtons function
+// Utility function for initializing copy clipboard buttons on the current
+//      document.
+// A copy clipboard button will copy text to the device clipboard on click.
+// 
+// Copy clipboard buttons must include the "copy-clipboard-button" class.
+// Each button must have an attribute "data-clipboard-text" which specifies the
+//      text to copy to the clipboard.
+function initCopyClipboardButtons() {
+    let elements = document.querySelectorAll(".copy-clipboard-button");
+
+    for (const element of elements) {
+        element.addEventListener("click", () => {
+            if (!element.hasAttribute("data-clipboard-text")) {
+                console.error("Copy clipboard button did not have"
+                        + " \"data-clipboard-text\" attribuite.");
+                return;
+            }
+
+            navigator.clipboard.writeText(element.data-clipboard-text);
+            alert("Text copied to clipboard.");
+        });
+    }
+}
+
+export { VirtualTourBuilder, initCopyClipboardButtons }
 
 
 

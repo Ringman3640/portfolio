@@ -2,32 +2,37 @@
 <html>
     <head>
         <link rel="stylesheet" href="./style/global-style.css">
+        <script type="module" src="index.js"></script>
     </head>
 
     <body>
         <header id="home-page-header">
-            <h1>Home Page Header</h1>
-            <p>
-                This is work-in-progress. This will contain an image banner with
-                a welcome message. Something like:
-            </p>
-            <h2>
-                I'm Franz Alarcon<br>
-                Welcome to my portfolio!
-            </h2>
+            <h1>
+                Hello, I am <br>
+                Franz Alarcon <br>
+                Software Developer
+            </h1>
         </header>
 
         <main id="home-page-main" class="main-section">
             <div id="main-about-me" class="main-section-group">
-                <h2 class="main-section-header">About Me</h2>
+                <p><br></p>
+                <h2 class="main-section-header">
+                    Welcome to my portfolio!
+                </h2>
+                <p>
+                    This website showcases the software development projects I
+                    have worked on personally and scholarly. 
+                </p>
             </div>
 
             <div id="home-page-projects" class="main-section-group">
                 <h2>Here are my projects</h2>
 
                 <div id="project-listings" class="project-listings">
-                    <a href="./projects/outbreak-pto.html" class="project-card">
-                        <div class="project-card-container grow-shade-on-hover">
+                    <div class="info-card-container">
+                        <a href="./projects/outbreak-pto.html" 
+                            class="info-card grow-shade-on-hover">
                             <h3 class="project-title">
                                 Outbreak-PTO
                             </h3>
@@ -40,20 +45,68 @@
                                 A top-down action shooter game built with the 
                                 Unity Engine.
                             </p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                    <div class="info-card-container">
+                        <a href="" 
+                            class="info-card grow-shade-on-hover">
+                            <h3 class="project-title">
+                                Project Title
+                            </h3>
+                            <div class="project-image-container">
+                                <img src="./resources/images/home-page/project-outbreakpot-thumbnail.png" 
+                                    alt="Thumbnail image for Outbreak-PTO project." 
+                                    class="project-image">
+                            </div>
+                            <p class="project-description">
+                                Description Text
+                            </p>
+                        </a>
+                    </div>
+                    <div class="info-card-container">
+                        <a href="" 
+                            class="info-card grow-shade-on-hover">
+                            <h3 class="project-title">
+                                Project Title
+                            </h3>
+                            <div class="project-image-container">
+                                <img src="./resources/images/home-page/project-outbreakpot-thumbnail.png" 
+                                    alt="Thumbnail image for Outbreak-PTO project." 
+                                    class="project-image">
+                            </div>
+                            <p class="project-description">
+                                Description Text
+                            </p>
+                        </a>
+                    </div>
+                    <div class="info-card-container">
+                        <a href="" 
+                            class="info-card grow-shade-on-hover">
+                            <h3 class="project-title">
+                                Project Title
+                            </h3>
+                            <div class="project-image-container">
+                                <img src="./resources/images/home-page/project-outbreakpot-thumbnail.png" 
+                                    alt="Thumbnail image for Outbreak-PTO project." 
+                                    class="project-image">
+                            </div>
+                            <p class="project-description">
+                                Description Text
+                            </p>
+                        </a>
+                    </div>
                 </div>
                 
             </div>
 
             <div id="main-social-links" class="main-section-group">
-                <h2 class="main-section-header">Socials</h2>
+                <h2 class="main-section-header">These are my social pages</h2>
 
                 <div id="main-socials-container">
-                    <div class="social-card-container">
+                    <div class="info-card-container">
                         <a href="https://github.com/Ringman3640"
                             target="_blank"
-                            class="social-card grow-shade-on-hover">
+                            class="info-card social-card grow-shade-on-hover">
                             <div class="social-card-logo-container">
                                 <img src="./resources/images/home-page/github-logo.png"
                                     class="social-card-logo">
@@ -63,10 +116,10 @@
                             </h3>
                         </a>
                     </div>
-                    <div class="social-card-container">
+                    <div class="info-card-container">
                         <a href="https://www.linkedin.com/in/franz-alarcon/"
                             target="_blank"
-                            class="social-card grow-shade-on-hover">
+                            class="info-card social-card grow-shade-on-hover">
                             <div class="social-card-logo-container">
                                 <img src="./resources/images/home-page/linkedin-logo.png"
                                     class="social-card-logo">
@@ -78,6 +131,54 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div id="main-contact-info">
+                <h2 class="main-section-header">Contact me at</h2>
+
+                <div id="main-contact-container">
+                    <div class="info-card-container">
+                        <button class="info-card contact-card copy-clipboard-button
+                                grow-shade-on-hover"
+                            data-clipboard-text="fvalarcon@gmail.com">
+                            <div class="social-card-logo-container">
+                                <img src="./resources/images/home-page/email-icon.png"
+                                    class="social-card-logo">
+                            </div>
+                            <h3 class="social-card-text">
+                                fvalarcon@gmail.com
+                            </h3>
+                        </button>
+                    </div>
+                    <div class="info-card-container">
+                        <button class="info-card contact-card copy-clipboard-button
+                                grow-shade-on-hover"
+                            data-clipboard-text="425-220-1663">
+                            <div class="social-card-logo-container">
+                                <img src="./resources/images/home-page/phone-icon.png"
+                                    class="social-card-logo">
+                            </div>
+                            <h3 class="social-card-text">
+                                425-220-1663
+                            </h3>
+                        </button>
+                    </div>
+                    <div class="info-card-container">
+                        <button class="info-card contact-card copy-clipboard-button
+                                grow-shade-on-hover"
+                            data-clipboard-text="Ringman2011#0048">
+                            <div class="social-card-logo-container">
+                                <img src="./resources/images/home-page/discord-logo.png"
+                                    class="social-card-logo">
+                            </div>
+                            <h3 class="social-card-text">
+                                Ringman2011#0048
+                            </h3>
+                        </button>
+                    </div>
+                </div>
+
+                
             </div>
         </main>
 
