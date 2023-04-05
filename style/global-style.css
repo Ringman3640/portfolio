@@ -53,15 +53,21 @@ Author: Franz Alarcon
 
 /* Root Variables */
 :root {
-    --primary-color-light: rgba(57, 138, 214, 1);
-    --primary-color-dark: rgba(19, 87, 175, 1);
-    --secondary-color-light: rgba(152, 94, 170, 1);
-    --secondary-color-dark: rgba(120, 71, 167, 1);
+    /* Color pallete taken from */
+    /* https://colors.dopely.top/inside-colors/blue-color-palette-inspirations-with-names-and-hex-codes/ */
+
+    --primary-color-light: #223BC9;
+    --primary-color-dark: #151A7B;
+    --secondary-color-light: #f35476;
+    --secondary-color-dark: #E63B60;
     --primary-background-color: white;
 
     --pale-background: rgba(255, 255, 255, 0.3);
 
     --default-padding-size: 8px;
+    
+    --pop-shadow-offset: 10px;
+    --popped-text-side-padding: 12px;
 }
 
 
@@ -386,12 +392,17 @@ img.pixel-art {
     
 }
 
-.main-section-header {
-    
+.main-section-group {
+    margin-bottom: 80px;
 }
 
-#home-page-projects {
-    
+.main-section-header {
+    background-color: var(--primary-color-light);
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
+    color: white;
+    font-size: 36px;
+    padding: 4px var(--popped-text-side-padding);
+    margin-bottom: 20px;
 }
 
 .info-card-container {
@@ -426,6 +437,7 @@ div.project-listings {
 a.project-card {
     position: absolute;
     background-color: var(--secondary-color-light);
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
     width: var(--card-width);
     height: var(--card-height);
     padding: var(--default-padding-size);
@@ -436,6 +448,8 @@ a.project-card {
 
 a.project-card:hover {
     height: max-content;
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark), 
+        0px 0px 5px black;
 }
 
 h3.project-title {

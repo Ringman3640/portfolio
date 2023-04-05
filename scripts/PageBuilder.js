@@ -290,17 +290,21 @@ class VirtualTourBuilder {
 //      text to copy to the clipboard.
 function initCopyClipboardButtons() {
     let elements = document.querySelectorAll(".copy-clipboard-button");
+    let clipboard = navigator.clipboard;
 
     for (const element of elements) {
-        element.addEventListener("click", () => {
-            if (!element.hasAttribute("data-clipboard-text")) {
+        element.addEventListener("click", (event) => {
+            let copyText = element.getAttribute("data-clipboard-text");
+            if (!copyText) {
                 console.error("Copy clipboard button did not have"
                         + " \"data-clipboard-text\" attribuite.");
                 return;
             }
-
-            navigator.clipboard.writeText(element.data-clipboard-text);
-            alert("Text copied to clipboard.");
+            
+            clipboard.writeText(copyText)
+                .then(() => {
+                    alert("Text copied to clipboard.");
+                });
         });
     }
 }
