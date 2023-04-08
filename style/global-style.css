@@ -375,21 +375,76 @@ img.pixel-art {
 
 /* Home Page */
 :root {
+    --banner-height: 800px;
+
     --card-width: 260px;
     --card-height: 290px;
 }
 
 #home-page-header {
-    background-color: var(--primary-color-light);
+    background-color: none;
     left: 0;
     width: 100vw;
-    height: 80vh;
+    height: var(--banner-height);
     padding: 0px;
     margin: 0px;
 }
 
-#home-page-main {
-    
+#home-banner-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100vw;
+    height: var(--banner-height);
+    padding: 20px;
+}
+
+#home-banner-img-container {
+    height: 100%;
+}
+
+#home-banner-img {
+    align-self: flex-end;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
+}
+
+#home-banner-text {
+    flex-grow: 1;
+    height: 100%;
+    padding: auto;
+}
+
+#home-banner-text-intro,
+#home-banner-text-name,
+#home-banner-text-profession {
+    display: block;
+    width: max-content;
+    padding: 4px 20px;
+}
+
+#home-banner-text-intro {
+    font-size: 50px;
+}
+
+#home-banner-text-name {
+    color: white;
+    font-size: 140px;
+    font-weight: bold;
+    background-color: var(--primary-color-light);
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
+    margin-bottom: 25px;
+}
+
+#home-banner-text-profession {
+    color: black;
+    font-size: 100px;
+    font-weight: bold;
+    background-color: var(--secondary-color-light);
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
+    float: right;
 }
 
 .main-section-group {
