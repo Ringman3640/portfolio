@@ -392,7 +392,6 @@ img.pixel-art {
 
 #home-banner-container {
     display: flex;
-    gap: 20px;
     justify-content: space-between;
     flex-direction: row;
     width: 100vw;
@@ -402,6 +401,8 @@ img.pixel-art {
 
 #home-banner-img-container {
     height: 100%;
+    overflow: hidden;
+    padding-bottom: var(--pop-shadow-offset);
 }
 
 #home-banner-img {
@@ -412,7 +413,6 @@ img.pixel-art {
 }
 
 #home-banner-text {
-    flex-grow: 1;
     height: 100%;
     padding: auto;
 }
@@ -420,18 +420,18 @@ img.pixel-art {
 #home-banner-text-intro,
 #home-banner-text-name,
 #home-banner-text-profession {
+    font-size: 10px;
     display: block;
     width: max-content;
     padding: 4px 20px;
 }
 
 #home-banner-text-intro {
-    font-size: 50px;
+    background-color: white;
 }
 
 #home-banner-text-name {
     color: white;
-    font-size: 140px;
     font-weight: bold;
     background-color: var(--primary-color-light);
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
@@ -440,7 +440,6 @@ img.pixel-art {
 
 #home-banner-text-profession {
     color: black;
-    font-size: 100px;
     font-weight: bold;
     background-color: var(--secondary-color-light);
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
@@ -482,6 +481,7 @@ img.pixel-art {
 div.project-listings {
     display: flex;
     gap: 10px;
+    row-gap: 40px;
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
