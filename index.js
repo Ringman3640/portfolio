@@ -55,7 +55,7 @@ const textImageGap = 20;
 
 // Individual text element scaling
 // Defines the width of each text element relative to its allotted space.
-const introTextWidth = 0.2;     // "Hello, I'm"
+const introTextWidth = 0.25;     // "Hello, I'm"
 const nameTextWidth = 0.8;      // "Franz Alarcon"
 const profTextWidth = 0.8;      // "Software Developer"
 const minTextSize = 1;
@@ -66,17 +66,15 @@ function resizeBanner() {
         return;
     }
 
+    // Distribute available viewport width to text and profile containers.
     let usableWidth = window.innerWidth - totalBannerPaddingWidth 
             - textImageGap;
     let textWidth = usableWidth * textContentPercent;
     let profWidth = usableWidth - textWidth;
-
     textContainer.style.width = textWidth + "px";
     profContainer.style.width = profWidth + "px";
 
-    console.log(profContainer.offsetWidth);
-    console.log(profContainer.style.width);
-
+    // Resize text elements to fit text container width
     let containerWidth = textContainer.offsetWidth;
     if (containerWidth == 0) {
         return;
@@ -84,6 +82,9 @@ function resizeBanner() {
     fitBannerText(introText, containerWidth * introTextWidth);
     fitBannerText(nameText, containerWidth * nameTextWidth);
     fitBannerText(profText, containerWidth * profTextWidth);
+
+    // Resize profile image height to match text height
+    profContainer.style.height = textContainer.offsetHeight + "px";
 }
 
 function fitBannerText(element, maxWidth) {

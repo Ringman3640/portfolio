@@ -385,7 +385,6 @@ img.pixel-art {
     background-color: none;
     left: 0;
     width: 100vw;
-    height: var(--banner-height);
     padding: 0px;
     margin: 0px;
 }
@@ -395,7 +394,6 @@ img.pixel-art {
     justify-content: space-between;
     flex-direction: row;
     width: 100vw;
-    height: var(--banner-height);
     padding: 20px;
 }
 
@@ -407,6 +405,7 @@ img.pixel-art {
 
 #home-banner-img {
     align-self: flex-end;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
@@ -414,7 +413,7 @@ img.pixel-art {
 
 #home-banner-text {
     height: 100%;
-    padding: auto;
+    padding-bottom: var(--pop-shadow-offset);
 }
 
 #home-banner-text-intro,
