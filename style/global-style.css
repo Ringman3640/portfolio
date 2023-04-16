@@ -387,6 +387,7 @@ img.pixel-art {
     width: 100vw;
     padding: 0px;
     margin: 0px;
+    margin-bottom: 100px;
 }
 
 #home-banner-container {
@@ -434,7 +435,7 @@ img.pixel-art {
     font-weight: bold;
     background-color: var(--primary-color-light);
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
-    margin-bottom: 25px;
+    margin-bottom: 80px;
 }
 
 #home-banner-text-profession {

@@ -56,9 +56,14 @@ const textImageGap = 20;
 // Individual text element scaling
 // Defines the width of each text element relative to its allotted space.
 const introTextWidth = 0.25;     // "Hello, I'm"
-const nameTextWidth = 0.8;      // "Franz Alarcon"
-const profTextWidth = 0.8;      // "Software Developer"
+const nameTextWidth = 0.85;      // "Franz Alarcon"
+const profTextWidth = 0.85;      // "Software Developer"
 const minTextSize = 1;
+
+// Name-Profession gap
+// Defines the gap between the name and profession text of he banner based as
+//      a percentage of the text width.
+const nameProfGap = 0.05;
 
 function resizeBanner() {
     // This seems very unnecessary but imma just be sure
@@ -83,10 +88,16 @@ function resizeBanner() {
     fitBannerText(nameText, containerWidth * nameTextWidth);
     fitBannerText(profText, containerWidth * profTextWidth);
 
+    // Apply percentage name-profession text gap
+    nameText.style.marginBottom = (usableWidth * nameProfGap) + "px";
+
     // Resize profile image height to match text height
     profContainer.style.height = textContainer.offsetHeight + "px";
+
 }
 
+// Fit a banner text element within a provided maxWidth value.
+// Scales the text element to have an width approximately equal to maxWidth.
 function fitBannerText(element, maxWidth) {
     let scaler = (maxWidth - totalTextPaddingWidth) 
             / (element.offsetWidth - totalTextPaddingWidth);
