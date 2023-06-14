@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Console Menu</title>
+        <link rel="stylesheet" href="/style/global-style.css">
+        <script type="module" src="./console-menu.js"></script>
+    </head>
+
+    <body>
+        <header id="console-menu-header" class="header-section">
+            <img class="pixel-art" 
+                src="/resources/images/console-menu-project/header-banner.png"
+                alt="Banner image for the Console Menu project page.">
+        </header>
+
+        <main id="conu-main" class="main-section">
+
+            <div id="virtual-tour-startup-container"></div>
+
+            <p><br></p>
+
+            <div class="section-row-combiner">
+
+                <div id="conu-overview" class="main-section-group">
+                    <h2 class="header-section">Overview</h2>
+                    <div class="header-underline"></div>
+                    <table class="table-listing">
+                        <tr>
+                            <th>Project Type</th>
+                            <td>Personal Project</td>
+                        </tr>
+                        <tr>
+                            <th>Development Period</th>
+                            <td>1 Year (On and Off)</td>
+                        </tr>
+                        <tr>
+                            <th>Development Time</th>
+                            <td>4 Months</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="conu-tools" class="main-section-group">
+                    <h2 class="header-section">Tools Used</h2>
+                    <div class="header-underline"></div>
+                    <table class="table-listing">
+                        <tr>
+                            <th>IDE</th>
+                            <td>Visual Studio</td>
+                        </tr>
+                        <tr>
+                            <th>Lanugage</th>
+                            <td>C++</td>
+                        </tr>
+                        <tr>
+                            <th>Libraries</th>
+                            <td>Windows API</td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+
+            <p><br></p>
+
+            <div id="conu-description" class="main-section-group">
+                <h2 class="header-section">Description</h2>
+                <div class="header-underline"></div>
+                <p>
+                    Console Menu (abbreviated as CONU) is a C++ GUI library that
+                    operates within the default C++ console window. CONU allows
+                    for the development of dynamic user interfaces that respond
+                    to mouse and keyboard input, such as Menu systems,
+                    interactive programs, and games.
+                    <br><br>
+
+                    This project was developed as a personal project to create
+                    a GUI library. Development and planning began May, 2022 and 
+                    CONU v1.0 was realeased February, 2023. Development occurred
+                    intermittently over this period.
+                </p>
+            </div>
+
+            <p><br></p>
+
+            <div id="conu-feature-overview" class="main-section-group">
+                <h2 class="header-section">Feature Overview</h2>
+                <div class="header-underline"></div>
+                
+                <h3></h3>
+                <p>
+                    
+                    <br><br>
+                </p>
+            </div>
+
+            <p><br></p>
+
+            <div id="conu-dev-issues" class="main-section-group">
+                <h2 class="header-section">Development Issues</h2>
+                <div class="header-underline"></div>
+
+                <h3>Not Enough Initial Planning</h3>
+                <p>
+                    I was constantly changing class interfaces for base classes
+                    throughout development, which took up a lot of time. This
+                    could have been avoided if I spend more time planning
+                    before developing any interfaces.
+                    <br><br>
+                </p>
+
+                <h3>WinAPI</h3>
+                <p>
+                    This was my first dive into the Windows API, which was a
+                    significant learning curve. I spent a lot of time 
+                    troubleshooting.
+                    <br><br>
+                </p>
+                
+                <h3>Console Window Ownership</h3>
+                <p>
+                    The default C++ console window is not actually owned by
+                    the program. Rather, it is executed as a separate process.
+                    This prevented me from adding beneficial features involving 
+                    hooks.
+                    <br><br>
+                </p>
+
+                <h3>Lack of Library Development Knowledge</h3>
+                <p>
+                    I had very minimal library design knowledge initially. This
+                    was detrimental when issues would latter appear, such as the
+                    problem of distributing a static library file built using a
+                    specifc compiler version.
+                </p>
+            </div>
+
+            <p><br></p>
+
+            <div id="conu-what-i-learned" class="main-section-group">
+                <h2 class="header-section">What I Learned</h2>
+                <div class="header-underline"></div>
+
+                <h3>General Development Experience</h3>
+                <p>
+                    I would consider this my first programming project that is
+                    considerably complex. This is compared to more basic
+                    programming assignment and personal projects.
+                    <br><br>
+                </p>
+                
+                <h3>Interface Change is Expensive</h3>
+                <p>
+                    Changing the interface for a class mid-development is very
+                    time expensive, especially if the class is a base class. It
+                    is very important to plan-out class interfaces ahead of time
+                    to prevent the need to change them later.
+                    <br><br>
+                </p>
+
+                <h3>Introduction to the Windows API</h3>
+                <p>
+                    This project involved me using the Windows API for the first
+                    time. I was able to learn some basic knowledge of how the
+                    API works, such as how windows and errors are handled.
+                    <br><br>
+                </p>
+
+                <h3>Windows Hooking</h3>
+                <p>
+                    When researching on how to implement certain features for
+                    the library, I learned about Window's hooking system. This
+                    system inspired me to implement the input hook system in
+                    CONU.
+                    <br><br>
+                </p>
+
+                <h3>Static vs Dynamic Linked Libraries</h3>
+                <p>
+                    Troubleshooting the issues with static libraries taught me
+                    about both static and dynamic libraries. Should I remake
+                    this project, I would likely try to implement it as a DLL.
+                </p>
+            </div>
+
+        </main>
+
+    </body>
+</html>

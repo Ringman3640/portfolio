@@ -588,3 +588,9 @@ button.contact-card {
     left: 0;
     top: 0;
 }
+
+/* Console Menu Project Page */
+#console-menu-header {
+    background-color: black;
+    padding: 50px;
+}
