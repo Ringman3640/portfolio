@@ -156,31 +156,50 @@ div.section-row-combiner > div {
     flex-grow: 1;
 }
 
-.button-1 {
-    background-color: var(--primary-color-light);
+.button-1, .button-2 {
     display: inline-block;
     width: fit-content;
     font-size: 18px;
     font-weight: normal;
     text-align: center;
     text-decoration: none;
-    color: inherit;
     padding: 10px;
-    transition: all 0.2s linear;
+    transition: all 0.1s linear;
     cursor: pointer;
 }
 
-.button-1 p {
+.button-1 p, .button-2 p {
     font-weight: normal;
 }
 
-.button-1:hover {
+.button-1:hover, .button-2:hover {
     filter: brightness(50%);
+}
+
+.button-1 {
+    background-color: var(--primary-color-light);
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
+    color: white;
+}
+
+.button-2 {
+    background-color: var(--secondary-color-light);
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
+    color: inherit;
 }
 
 .page-banner {
     width: 100%;
+}
 
+#resources-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#resources-container #virtual-tour-startup-container {
+    margin-left: auto;
 }
 
 
@@ -376,10 +395,6 @@ img.pixel-art {
 
 #virtual-tour-time-slider {
     width: 100%;
-}
-
-#virtual-tour-startup-button {
-    background-color: var(--secondary-color-light);
 }
 
 
