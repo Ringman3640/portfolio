@@ -150,10 +150,11 @@ div.section-underline {
 
 div.section-row-combiner {
     display: flex;
+    gap: 10px;
 }
 
 div.section-row-combiner > div {
-    flex-grow: 1;
+    flex: 1;
 }
 
 .button-1, .button-2 {
