@@ -309,7 +309,37 @@ function initCopyClipboardButtons() {
     }
 }
 
-export { VirtualTourBuilder, initCopyClipboardButtons }
+// buildNavBar function
+// Building function for inserting the standard navigation bar into a page.
+// 
+// The DOM must contain an element with ID "nav-bar-container". This will
+//     become the parent element of the navigation bar. 
+function buildNavBar() {
+    let container = document.getElementById("nav-bar-container");
+    if (!container) {
+        console.error("PageBuilder: Could not find container element for"
+                + " navigation bar.");
+        return;
+    }
+
+    // TODO: Add the links to each nav item when the page is created
+    container.innerHTML = `
+        <a href="/index.html">
+            <h2>Home</h2>
+        </a>
+        <a href="/index.html">
+            <h2>Projects</h2>
+        </a>
+        <a href="/index.html">
+            <h2>About Me</h2>
+        </a>
+        <a href="/index.html">
+            <h2>Contact</h2>
+        </a>
+    `;
+}
+
+export { VirtualTourBuilder, initCopyClipboardButtons, buildNavBar }
 
 
 

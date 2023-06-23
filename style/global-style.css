@@ -65,7 +65,7 @@ Author: Franz Alarcon
     --pale-background: rgba(255, 255, 255, 0.3);
 
     --default-padding-size: 8px;
-    
+
     --pop-shadow-offset: 10px;
     --popped-text-side-padding: 12px;
 }
@@ -395,6 +395,33 @@ img.pixel-art {
 
 #virtual-tour-time-slider {
     width: 100%;
+}
+
+#nav-bar-container {
+    display: flex;
+    background-color: var(--primary-color-light);
+    width: 100vw;
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
+    margin-bottom: var(--pop-shadow-offset);
+}
+
+#nav-bar-container a {
+    background-color: inherit;
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
+    text-decoration: none;
+    transition: all 0.1s linear;
+}
+
+#nav-bar-container a:hover {
+    filter: brightness(50%);
+}
+
+#nav-bar-container h2 {
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 

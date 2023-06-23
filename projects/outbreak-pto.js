@@ -1,5 +1,5 @@
 import { ImageGallery } from "../scripts/ImageGallery.js"
-import { VirtualTourBuilder } from "../scripts/PageBuilder.js"
+import { VirtualTourBuilder, buildNavBar } from "../scripts/PageBuilder.js"
 
 "use strict"
 
@@ -11,6 +11,9 @@ let unusedGallery = null;
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
+    // Build navigation bar
+    buildNavBar();
+    
     // Load image galleries
     characterGallery = new ImageGallery(
             document.getElementById("character-gallery"));

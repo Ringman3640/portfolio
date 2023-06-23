@@ -8,6 +8,9 @@ let pageBuilder = new VirtualTourBuilder();
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
+    // Build navigation bar
+    buildNavBar();
+    
     // Build virtual tour
     // pageBuilder.buildVirtualTour("*TEMP*");
     // pageBuilder.loadEvents("*TEMP*");
