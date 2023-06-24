@@ -110,7 +110,8 @@ p {
     height: 100vh;
     z-index: 999;
     opacity: 1;
-    transition: opacity 0.5s linear;
+    transition: opacity 0.05s linear;
+    pointer-events: none;
 }
 
 .center-image {

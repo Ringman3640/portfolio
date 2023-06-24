@@ -1,5 +1,5 @@
-import { initCopyClipboardButtons, fadeOutPageHider } 
-    from "./scripts/PageBuilder.js";
+import { initCopyClipboardButtons } from "/scripts/PageBuilder.js";
+import { fadeInPage, addAnchorFadeOut } from "/scripts/ElementUtilities.js"
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -39,7 +39,8 @@ function init() {
     resizeBanner();
     window.addEventListener("resize", resizeBanner);
 
-    fadeOutPageHider();
+    addAnchorFadeOut();
+    fadeInPage();
 }
 
 // Resize the home page banner dynamically to fit the width of the view port.

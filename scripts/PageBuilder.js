@@ -339,31 +339,10 @@ function buildNavBar() {
     `;
 }
 
-// fadeOutPageHider function
-// Fades out the page hider element on a page by setting the opacity to 0 with
-//     a transition. After the element is fully opaque, it is removed.
-// The page hider element is used to hide the DOM from the user in case there
-//     needs to be additional javascript formatting.
-// 
-// The page hider element must be of ID "page-hider". If no element with this ID
-//     is found, then the function does nothing.
-function fadeOutPageHider() {
-    let target = document.getElementById("page-hider");
-    if (!target) {
-        return;
-    }
-
-    target.style.opacity = "0";
-    setTimeout(function() {
-        target.remove();
-    }, 500);
-}
-
 export {
     VirtualTourBuilder,
     initCopyClipboardButtons,
-    buildNavBar,
-    fadeOutPageHider
+    buildNavBar
 }
 
 
