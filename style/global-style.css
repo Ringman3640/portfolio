@@ -101,6 +101,18 @@ p {
     font-weight: lighter;
 }
 
+#page-hider {
+    position: fixed;
+    background-color: white;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
 .center-image {
     display: block;
     margin: auto;
@@ -119,7 +131,7 @@ p {
     margin-bottom: 30px;
 }
 
-.main-section-group > h3 {
+.main-section-group h3 {
     color: var(--primary-color-dark);
 }
 
@@ -651,4 +663,8 @@ button.contact-card {
 #conu-page-image {
     display: block;
     margin: auto;
+}
+
+#conu-demonstration img {
+    height: 30vw;
 }
