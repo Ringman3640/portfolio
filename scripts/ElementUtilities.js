@@ -96,7 +96,6 @@ function registerDisplayImages() {
         // Otherwise, extract set code and add to imageSets
         let fullClassName = image.className.match(/display-image-\S+/);
         if (!fullClassName) {
-            console.log("Bruh");
             continue;
         }
         const setCodeStartIdx = 14;
@@ -113,4 +112,20 @@ function registerDisplayImages() {
     }
 }
 
-export { fadeInPage, addAnchorFadeOut, registerDisplayImages }
+// applyBehavioralUtilities function
+// Applies all utilities that are used setup a page. These include utilities
+//     that are intended for use before the page fully loads in and utilities
+//     that apply interaction behaviors to elements.
+// All applications of utilities will not cause disruptive behavior in the event
+//     of unformatted or non-present target elements in the DOM.
+function applySetupUtilities() {
+    addAnchorFadeOut();
+    registerDisplayImages();
+}
+
+export {
+    fadeInPage,
+    addAnchorFadeOut,
+    registerDisplayImages,
+    applySetupUtilities
+}

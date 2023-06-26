@@ -1,10 +1,17 @@
-import { ImageGallery } from "/scripts/ImageGallery.js"
+// *TEMP*js
+// Javascript for the *TEMP* project page.
+
+// Default imports
 import { VirtualTourBuilder, buildNavBar } from "/scripts/PageBuilder.js"
-import { fadeInPage, addAnchorFadeOut } from "/scripts/ElementUtilities.js"
+import { applySetupUtilities, fadeInPage } from "/scripts/ElementUtilities.js"
+
+// Additional imports (uncomment for use)
+// ImageGallery: Use to load-in a set of images to the page as an image gallery.
+// import { ImageGallery } from "/scripts/ImageGallery.js"
 
 "use strict"
 
-let pageBuilder = new VirtualTourBuilder();
+// let virtualTour = new VirtualTourBuilder();
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -12,12 +19,12 @@ function init() {
     // Build navigation bar
     buildNavBar();
 
-    // Apply element effects
-    addAnchorFadeOut();
-    
+    // Apply element utilities
+    applySetupUtilities();
+
     // Build virtual tour
-    // pageBuilder.buildVirtualTour("*TEMP*");
-    // pageBuilder.loadEvents("*TEMP*");
+    // virtualTour.buildVirtualTour("*TEMP*");
+    // virtualTour.loadEvents("*TEMP*");
 
     // Fade in page contents
     fadeInPage();
