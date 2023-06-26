@@ -1,6 +1,8 @@
 // ElementUtilities.js
 // Author: Franz Alarcon
 
+import { registerImage, registerImageSet } from "/scripts/ImageGallery.js"
+
 let fadeDurationMs = 50;
 
 // fadeInPage function
@@ -62,4 +64,53 @@ function addAnchorFadeOut() {
     }
 }
 
-export { fadeInPage, addAnchorFadeOut }
+// registerDisplayImage function
+// Registers all display images currently within the DOM. All registered images
+//     become clickable. When clicked, the images are displayed on the screen.
+// Images can be registered as standalone or as a set. Images within a set are
+//     linked to each other when displayed. This allows the viewer to provide
+//     "next" and "previous" image buttons.
+// 
+// Images that will be registered must have one of the following two classes:
+//     1. Standalone image:     display-image
+//     2. Set image:            display-image-[set code]*
+// 
+// *[set code] is an identifier for an image set. This code can consist of all
+//     non-whitespace characters. Specifically, the regex for the code is /\S+/.
+// 
+// Images with the same set code are part of the same image set. The order of
+//     images within an image set is based on their order in the DOM.
+function registerDisplayImages() {
+    let displayImages = document.querySelectorAll("[class^='display-image'],"
+            + " [class*=' display-image']");
+    let imageSets = {};
+    
+    for (const image of displayImages) {
+
+        // Register standalone images
+        if (image.classList.contains("display-image")) {
+            registerImage(image);
+            continue;
+        }
+
+        // Otherwise, extract set code and add to imageSets
+        let fullClassName = image.className.match(/display-image-\S+/);
+        if (!fullClassName) {
+            console.log("Bruh");
+            continue;
+        }
+        const setCodeStartIdx = 14;
+        let setCode = fullClassName[0].substring(setCodeStartIdx);
+        if (!(setCode in imageSets)) {
+            imageSets[setCode] = [];
+        }
+        imageSets[setCode].push(image);
+    }
+
+    // Register all image sets
+    for (const setCode in imageSets) {
+        registerImageSet(imageSets[setCode]);
+    }
+}
+
+export { fadeInPage, addAnchorFadeOut, registerDisplayImages }

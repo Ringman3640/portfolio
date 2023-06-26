@@ -261,6 +261,14 @@ div.image-gallery {
     filter: brightness(2);
 }
 
+.registered-image {
+    cursor: pointer;
+}
+
+.registered-image:hover {
+    filter: brightness(2);
+}
+
 .image-container > img {
     width: 100%;
     height: 100%;

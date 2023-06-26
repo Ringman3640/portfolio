@@ -14,6 +14,198 @@ class ImageNode {
     }
 }
 
+// ImageViewer class
+// Internal class for displaying images on the web page.
+// Images must be wrapped within an ImageNode. This allows sets of images to be
+//      chained together within the viewing element.
+// 
+// A global variable called "imageViewer" exists within this module as an
+//     accessor instance to the class's functionality.
+class ImageViewer {
+    constructor() {
+        this._imageViewerNode = null;
+        this._imageViewerElement = document.createElement("div");
+        this._imageViewerFrame = document.createElement("div");
+        this._imageViewerPrevButton = document.createElement("button");
+        this._imageViewerNextButton = document.createElement("button");
+        this._imageViewerExitButton = document.createElement("button");
+
+        // Build image viewer element
+        this._imageViewerElement.classList.add("image-viewer");
+        this._imageViewerFrame.classList.add("image-viewer-frame");
+        this._imageViewerPrevButton.classList.add("image-viewer-prev");
+        this._imageViewerNextButton.classList.add("image-viewer-next");
+        this._imageViewerExitButton.classList.add("image-viewer-exit");
+        this._imageViewerElement.appendChild(this._imageViewerFrame);
+        this._imageViewerElement.appendChild(this._imageViewerPrevButton);
+        this._imageViewerElement.appendChild(this._imageViewerNextButton);
+        this._imageViewerElement.appendChild(this._imageViewerExitButton);
+
+        // Apply left arrow svg to prev button
+        fetch("../resources/images/image-gallery-assets/left-arrow.svg")
+            .then(response => {
+                return response.text();
+            })
+            .then(svgText => {
+                this._imageViewerPrevButton.innerHTML = svgText;
+            })
+            .catch(error => {
+                console.error("ImageViewer: Could not get image gallery left"
+                        + " arrow svg file, \n" + error);
+            });
+
+        // Apply right arrow svg to next button
+        fetch("../resources/images/image-gallery-assets/right-arrow.svg")
+            .then(response => {
+                return response.text();
+            })
+            .then(svgText => {
+                this._imageViewerNextButton.innerHTML = svgText;
+            })
+            .catch(error => {
+                console.error("ImageViewer: Could not get image gallery right"
+                        + " arrow svg file, \n" + error);
+            });
+
+        // Apply cross symbol svg to exit button
+        fetch("../resources/images/image-gallery-assets/cross-thick.svg")
+            .then(response => {
+                return response.text();
+            })
+            .then(svgText => {
+                this._imageViewerExitButton.innerHTML = svgText;
+            })
+            .catch(error => {
+                console.error("ImageViewer: Could not get image gallery cross"
+                        + " svg file, \n" + error);
+            });
+
+        // Set event listeners
+        document.addEventListener("keydown", this._keypressHandler.bind(this));
+        this._imageViewerNextButton.addEventListener("click", 
+                this._viewerNextImage.bind(this));
+        this._imageViewerPrevButton.addEventListener("click", 
+                this._viewerPrevImage.bind(this));
+        this._imageViewerExitButton.addEventListener("click", 
+                this._viewerExit.bind(this));
+    }
+
+    // Show an image on the image viewer. 
+    //
+    // imageNode (ImageNode) - ImageNode instance that contains the image to
+    //     display.
+    showImageNode(imageNode) {
+        if (imageNode === null) {
+            console.error("ImageViewer: Image clicked but image was null.");
+            return;
+        }
+
+        this._imageViewerNode = imageNode;
+        this._setViewerImage(imageNode.image);
+        this._setViewerButtonsDisabled();
+        document.body.appendChild(this._imageViewerElement);
+    }
+
+    // Handler for keydown events.
+    // Allows for image viewer button operation through keyboard.
+    _keypressHandler(key) {
+        if (this._imageViewerNode == null) {
+            return;
+        }
+
+        // Right arrow
+        if (key.keyCode == 39 && !this._imageViewerNextButton.disabled) {
+            this._viewerNextImage();
+            return;
+        }
+
+        // Left arrow
+        if (key.keyCode == 37 && !this._imageViewerPrevButton.disabled) {
+            this._viewerPrevImage();
+            return;
+        }
+
+        // Esc
+        if (key.keyCode == 27) {
+            this._viewerExit();
+            return;
+        }
+    }
+
+    _viewerNextImage() {
+        if (this._imageViewerNode === null) {
+            console.error("ImageViewer: Tried to get next image but the"
+                    + " current image is null.");
+            return;
+        }
+        if (this._imageViewerNode.next === null) {
+            console.error("ImageViewer: Tried to get next image but there"
+                    + " is no next image.");
+            return;
+        }
+
+        this._imageViewerNode = this._imageViewerNode.next;
+        this._setViewerButtonsDisabled();
+        this._setViewerImage(this._imageViewerNode.image);
+    }
+
+    _viewerPrevImage() {
+        if (this._imageViewerNode === null) {
+            console.error("ImageViewer: Tried to get previous image but the"
+                    + " current image is null.");
+            return;
+        }
+        if (this._imageViewerNode.prev === null) {
+            console.error("ImageViewer: Tried to get previous image but there"
+                    + " is no previous image.");
+            return;
+        }
+
+        this._imageViewerNode = this._imageViewerNode.prev;
+        this._setViewerButtonsDisabled();
+        this._setViewerImage(this._imageViewerNode.image);
+    }
+
+    _viewerExit() {
+        this._imageViewerElement.remove();
+        this._imageViewerNode = null;
+    }
+
+    // Set the current image in the image viewer.
+    // Helper method
+    // 
+    // image (HTML element) - HTML image to show on viewer.
+    _setViewerImage(image) {
+        let imageCpy = image.cloneNode(true);
+        imageCpy.classList.remove("registered-image");
+        this._imageViewerFrame.replaceChildren(imageCpy);
+    }
+
+    // Set the disabled status for the prev and next image viewer buttons.
+    // Helper method
+    _setViewerButtonsDisabled() {
+        if (this._imageViewerNode === null) {
+            return;
+        }
+
+        if (this._imageViewerNode.next === null) {
+            this._imageViewerNextButton.disabled = true;
+        }
+        else {
+            this._imageViewerNextButton.disabled = false;
+        }
+
+        if (this._imageViewerNode.prev === null) {
+            this._imageViewerPrevButton.disabled = true;
+        }
+        else {
+            this._imageViewerPrevButton.disabled = false;
+        }
+    }
+}
+
+const imageViewer = new ImageViewer();
+
 // ImageList class
 // A list of images sorted according to a unique rank identifier.
 // Images with lower ranks are placed before images with higher ranks.
@@ -138,71 +330,6 @@ class ImageGallery {
         // Private data
         this._nextImageRank = 0;
         this._imageList = new ImageList();
-        this._imageViewerNode = null;
-        this._imageViewerElement = document.createElement("div");
-        this._imageViewerFrame = document.createElement("div");
-        this._imageViewerPrevButton = document.createElement("button");
-        this._imageViewerNextButton = document.createElement("button");
-        this._imageViewerExitButton = document.createElement("button");
-
-        // Build image viewer element
-        this._imageViewerElement.classList.add("image-viewer");
-        this._imageViewerFrame.classList.add("image-viewer-frame");
-        this._imageViewerPrevButton.classList.add("image-viewer-prev");
-        this._imageViewerNextButton.classList.add("image-viewer-next");
-        this._imageViewerExitButton.classList.add("image-viewer-exit");
-        this._imageViewerElement.appendChild(this._imageViewerFrame);
-        this._imageViewerElement.appendChild(this._imageViewerPrevButton);
-        this._imageViewerElement.appendChild(this._imageViewerNextButton);
-        this._imageViewerElement.appendChild(this._imageViewerExitButton);
-
-        // Apply left arrow svg to prev button
-        fetch("../resources/images/image-gallery-assets/left-arrow.svg")
-            .then(response => {
-                return response.text();
-            })
-            .then(svgText => {
-                this._imageViewerPrevButton.innerHTML = svgText;
-            })
-            .catch(error => {
-                console.error("ImageGallery: Could not get image gallery left"
-                        + " arrow svg file, \n" + error);
-            });
-
-        // Apply right arrow svg to next button
-        fetch("../resources/images/image-gallery-assets/right-arrow.svg")
-            .then(response => {
-                return response.text();
-            })
-            .then(svgText => {
-                this._imageViewerNextButton.innerHTML = svgText;
-            })
-            .catch(error => {
-                console.error("ImageGallery: Could not get image gallery right"
-                        + " arrow svg file, \n" + error);
-            });
-
-        // Apply cross symbol svg to exit button
-        fetch("../resources/images/image-gallery-assets/cross-thick.svg")
-            .then(response => {
-                return response.text();
-            })
-            .then(svgText => {
-                this._imageViewerExitButton.innerHTML = svgText;
-            })
-            .catch(error => {
-                console.error("ImageGallery: Could not get image gallery cross"
-                        + " svg file, \n" + error);
-            });
-
-        // Set event listeners
-        document.addEventListener("keydown", this._keypressHandler.bind(this));
-        this._imageViewerNextButton.addEventListener("click", 
-                this._viewerNextImage.bind(this));
-        this._imageViewerPrevButton.addEventListener("click", 
-                this._viewerPrevImage.bind(this));
-        this._imageViewerExitButton.addEventListener("click", 
-                this._viewerExit.bind(this));
     }
 
     // Load in a list of images to the image gallery from a specified gallery
@@ -382,79 +509,7 @@ class ImageGallery {
             return;
         }
 
-        this._imageViewerNode = imageNode;
-        this._setViewerImage(imageNode.image);
-        this._setViewerButtonsDisabled();
-        document.body.appendChild(this._imageViewerElement);
-    }
-
-    _viewerNextImage() {
-        if (this._imageViewerNode === null) {
-            console.error("ImageGallery: Tried to get next image but the"
-                    + " current image is null.");
-            return;
-        }
-        if (this._imageViewerNode.next === null) {
-            console.error("ImageGallery: Tried to get next image but there"
-                    + " is no next image.");
-            return;
-        }
-
-        this._imageViewerNode = this._imageViewerNode.next;
-        this._setViewerButtonsDisabled();
-        this._setViewerImage(this._imageViewerNode.image);
-    }
-
-    _viewerPrevImage() {
-        if (this._imageViewerNode === null) {
-            console.error("ImageGallery: Tried to get previous image but the"
-                    + " current image is null.");
-            return;
-        }
-        if (this._imageViewerNode.prev === null) {
-            console.error("ImageGallery: Tried to get previous image but there"
-                    + " is no previous image.");
-            return;
-        }
-
-        this._imageViewerNode = this._imageViewerNode.prev;
-        this._setViewerButtonsDisabled();
-        this._setViewerImage(this._imageViewerNode.image);
-    }
-
-    _viewerExit() {
-        this._imageViewerElement.remove();
-        this._imageViewerNode = null;
-    }
-
-    // Set the current image in the image viewer.
-    // Helper method
-    // 
-    // image (HTML element) - HTML image to show on viewer.
-    _setViewerImage(image) {
-        this._imageViewerFrame.replaceChildren(image.cloneNode(true));
-    }
-
-    // Set the disabled status for the prev and next image viewer buttons.
-    // Helper method
-    _setViewerButtonsDisabled() {
-        if (this._imageViewerNode === null) {
-            return;
-        }
-
-        if (this._imageViewerNode.next === null) {
-            this._imageViewerNextButton.disabled = true;
-        }
-        else {
-            this._imageViewerNextButton.disabled = false;
-        }
-
-        if (this._imageViewerNode.prev === null) {
-            this._imageViewerPrevButton.disabled = true;
-        }
-        else {
-            this._imageViewerPrevButton.disabled = false;
-        }
+        imageViewer.showImageNode(imageNode);
     }
     
     // Append an image container to the correct location within the gallery
@@ -475,4 +530,47 @@ class ImageGallery {
     }
 }
 
-export { ImageGallery }
+// registerImage function
+// Register an image as a standalone image set. Registered images become
+//      clickable and will display the image within the image viewer.
+//
+// image (HTML element) - Image element to register
+function registerImage(image) {
+    let imageNode = new ImageNode(image);
+    image.addEventListener("click", function() {
+        imageViewer.showImageNode(imageNode);
+    });
+    image.classList.add("registered-image");
+}
+
+// registerImageSet function
+// Register a set of images as an image set. Each registered image becomes
+//     clickable and will display the image within the image viewer. The viewer
+//     will connect an image with its next and previous images in the set.
+// 
+// imageSet (collection) - Iterable collection of image elements to register
+function registerImageSet(imageSet) {
+    const imageNodes = [];
+    
+    // Populate array with ImageNodes and referenced images
+    for (let i = 0; i < imageSet.length; ++i) {
+        imageNodes[i] = new ImageNode(imageSet[i]);
+    }
+
+    // Connect each ImageNode pointer and register images
+    for (let i = 0; i < imageSet.length; ++i) {
+        if (i != 0) {
+            imageNodes[i].prev = imageNodes[i - 1];
+        }
+        if (i != imageNodes.length - 1) {
+            imageNodes[i].next = imageNodes[i + 1];
+        }
+
+        imageSet[i].addEventListener("click", function() {
+            imageViewer.showImageNode(imageNodes[i]);
+        });
+        imageSet[i].classList.add("registered-image");
+    }
+}
+
+export { ImageGallery, registerImage, registerImageSet }

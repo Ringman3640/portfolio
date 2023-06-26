@@ -1,6 +1,6 @@
 import { ImageGallery } from "/scripts/ImageGallery.js"
 import { VirtualTourBuilder, buildNavBar } from "/scripts/PageBuilder.js"
-import { fadeInPage, addAnchorFadeOut } from "/scripts/ElementUtilities.js"
+import { fadeInPage, addAnchorFadeOut, registerDisplayImages } from "/scripts/ElementUtilities.js"
 
 "use strict"
 
@@ -14,6 +14,7 @@ function init() {
 
     // Apply element effects
     addAnchorFadeOut();
+    registerDisplayImages();
 
     // Build virtual tour
     // pageBuilder.buildVirtualTour("*TEMP*");
