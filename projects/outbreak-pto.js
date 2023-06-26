@@ -1,10 +1,16 @@
-import { ImageGallery } from "/scripts/ImageGallery.js"
+// outbreak-pto.js
+// Javascript for the Outbreak-PTO project page.
+
+// Default imports
 import { VirtualTourBuilder, buildNavBar } from "/scripts/PageBuilder.js"
-import { fadeInPage, addAnchorFadeOut } from "/scripts/ElementUtilities.js"
+import { applySetupUtilities, fadeInPage } from "/scripts/ElementUtilities.js"
+
+// Additional imports (uncomment for use)
+import { ImageGallery } from "/scripts/ImageGallery.js"
 
 "use strict"
 
-let pageBuilder = new VirtualTourBuilder();
+let virtualTour = new VirtualTourBuilder();
 let characterGallery = null;
 let otherGallery = null;
 let unusedGallery = null;
@@ -15,8 +21,8 @@ function init() {
     // Build navigation bar
     buildNavBar();
 
-    // Apply element effects
-    addAnchorFadeOut();
+    // Apply element utilities
+    applySetupUtilities();
     
     // Load image galleries
     characterGallery = new ImageGallery(
@@ -32,9 +38,9 @@ function init() {
     unusedGallery.loadImages("./outbreak-pto/unused-gallery.json");
 
     // Build virtual tour
-    pageBuilder.buildVirtualTour("../resources/audio/outbreak-pto-project/"
+    virtualTour.buildVirtualTour("../resources/audio/outbreak-pto-project/"
             + "outbreak-pto-page-narration.mp3");
-    pageBuilder.loadEvents("./outbreak-pto/events.json");
+    virtualTour.loadEvents("./outbreak-pto/events.json");
 
     // Fade in page contents
     fadeInPage();
