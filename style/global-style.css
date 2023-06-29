@@ -149,11 +149,7 @@ div.section-row-combiner {
 }
 
 div.section-row-combiner > div {
-    flex-shrink: 1;
-}
-
-div.section-row-combiner div.section-underline {
-    width: 100%;
+    flex: 1;
 }
 
 div.project-info-container {
