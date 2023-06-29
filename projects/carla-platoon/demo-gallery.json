@@ -1,0 +1,26 @@
+{
+    "rootURL": "/resources/images/carla-platoon-project/demo-gallery",
+    "relativeURL": true,
+    "images": [
+        {
+            "url": "seven_platoon_spawn.gif",
+            "alt": "Platoon formation and start demo"
+        },
+        {
+            "url": "four_platoon_stable_1.gif",
+            "alt": "Four-vehicle platoon demonstration 1"
+        },
+        {
+            "url": "four_platoon_stable_2.gif",
+            "alt": "Four-vehicle platoon demonstration 2"
+        },
+        {
+            "url": "five_platoon_stable.gif",
+            "alt": "Five-vehicle platoon demonstration"
+        },
+        {
+            "url": "six_platoon_stable.gif",
+            "alt": "Six-vehicle platoon demonstration"
+        }
+    ]
+}

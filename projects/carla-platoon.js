@@ -6,12 +6,13 @@ import { VirtualTourBuilder, buildNavBar } from "/scripts/PageBuilder.js"
 import { applySetupUtilities, fadeInPage } from "/scripts/ElementUtilities.js"
 
 // Additional imports (uncomment for use)
-// ImageGallery: Use to load-in a set of images to the page as an image gallery.
-// import { ImageGallery } from "/scripts/ImageGallery.js"
+import { ImageGallery } from "/scripts/ImageGallery.js"
 
 "use strict"
 
 // let virtualTour = new VirtualTourBuilder();
+
+let demoGallery = null;
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -21,6 +22,10 @@ function init() {
 
     // Apply element utilities
     applySetupUtilities();
+
+    // Build image galleries
+    demoGallery = new ImageGallery(document.getElementById("demo-gallery"));
+    demoGallery.loadImages("./carla-platoon/demo-gallery.json")
 
     // Build virtual tour
     // virtualTour.buildVirtualTour("*TEMP*");

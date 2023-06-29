@@ -19,6 +19,12 @@
 
         <main id="carla-platoon-main" class="main-section">
 
+            <img src="/resources/images/carla-platoon-project/cover-image.gif"
+                alt="CARLA Platoon System project page image"
+                class="center-image">
+
+            <p><br></p>
+
             <div id="resources-region">
                 <h2 class="section-text">Resources</h2>
                 <div id="resources-container">
@@ -28,6 +34,16 @@
                         <div>
                             <p>
                                 GitHub Page
+                            </p>
+                        </div>
+                    </a>
+
+                    <a href="https://carla.org/"
+                        target="_blank"
+                        class="button-2">
+                        <div>
+                            <p>
+                                CARLA Simulator
                             </p>
                         </div>
                     </a>
@@ -89,9 +105,72 @@
 
             <p><br></p>
 
-            <div id="*TEMP*" class="main-section-group">
-                <h2 class="header-section">*TEMP*</h2>
-                <div class="header-underline"></div>
+            <div id="carla-platoon-description" class="main-section-group">
+                <h2 class="section-text">Description</h2>
+                <div class="section-underline"></div>
+                <p>
+                    The CARLA Platoon System is an implementation of automated
+                    longitudinal control within a vehicle platoon. It was
+                    developed within the CARLA simulator and programming with
+                    Python using CARLA's Python API.
+                    <br><br>
+
+                    This project was started as an individual assignment for an
+                    automated vehicles course at university. The total
+                    development time, including research and implementation, was
+                    approximately one month.
+                </p>
+            </div>
+
+            <div id="carla-platoon-how-it-works" class="main-section-group">
+                <h2 class="section-text">How It Works</h2>
+                <div class="section-underline"></div>
+                <p>
+                    In a vehicle platoon, there are two types of vehicels: the
+                    lead vehicle and following vehicles. The lead vehicle is the
+                    vehicle at the front of the platoon formation. It is
+                    manually controlled and directs the whole platoon. Following
+                    vehicles are any vehicles behind the lead vehicle. Following
+                    vehicles are completely automated.
+                    <br><br>
+
+                    When the platoon is spawned into the CARLA simulated world,
+                    the lead vehicle is given several path options. Based on the
+                    selected path, the lead vehicle will start accelerating
+                    while broadcasting its movements to the following vehicles
+                    using a simple Python echo server.
+                    <br><br>
+
+                    Following vehicles will attempt to syncronize with the lead
+                    vehicle's movements. Each individual following vehicle will
+                    also act independently if it detects it is too close or too
+                    far from the vehicle in front of it. Other following
+                    vehicles will be notified of any corrective movements.
+                </p>
+
+                <p><br></p>
+
+                <div id="demo-gallery-container" class="image-gallery-container">
+                    <h3>Demonstrations</h2>
+                    <div id="demo-gallery" class="image-gallery"></div>
+                </div>
+            </div>
+
+            <div id="carla-platoon-results" class="main-section-group">
+                <h2 class="section-text">Final Results</h2>
+                <div class="section-underline"></div>
+
+            </div>
+
+            <div id="carla-platoon-issues" class="main-section-group">
+                <h2 class="section-text">Development Issues</h2>
+                <div class="section-underline"></div>
+
+            </div>
+
+            <div id="carla-platoon-learned" class="main-section-group">
+                <h2 class="section-text">What I learned</h2>
+                <div class="section-underline"></div>
 
             </div>
 
