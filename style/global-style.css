@@ -58,8 +58,10 @@ Author: Franz Alarcon
 
     --primary-color-light: #223BC9;
     --primary-color-dark: #151A7B;
+    --primary-color-pale: #d0d1e4;
     --secondary-color-light: #f35476;
     --secondary-color-dark: #E63B60;
+    --secondary-color-pale: #fad8df;
     --primary-background-color: white;
 
     --pale-background: rgba(255, 255, 255, 0.3);
@@ -136,26 +138,6 @@ p {
     color: var(--primary-color-dark);
 }
 
-.table-listing {
-    table-layout: fixed;
-}
-
-.table-listing tr {
-    margin: 100px;
-}
-
-.table-listing th {
-    width: 200px;
-    font-weight: normal;
-    font-size: 20px;
-    color: var(--primary-color-light);
-    text-align: left;
-}
-
-.table-listing td {
-    font-weight: lighter;
-}
-
 div.section-underline {
     width: min(400px, 100%);
     border-bottom: solid 2px var(--secondary-color-light);
@@ -167,7 +149,74 @@ div.section-row-combiner {
 }
 
 div.section-row-combiner > div {
+    flex-shrink: 1;
+}
+
+div.section-row-combiner div.section-underline {
+    width: 100%;
+}
+
+div.project-info-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+div.project-info-group {
+    width: 500px;
+}
+
+div.project-info-group div.section-underline {
+    width: 100%;
+}
+
+.project-info-listing {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.project-info-listing > .row {
+    display: flex;
+    border-bottom: solid 1px var(--primary-color-pale);
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.project-info-listing > .row:first-child {
+    border-top: none;
+}
+
+.project-info-listing > .row:last-child {
+    border-bottom: none;
+}
+
+.project-info-listing > .row > h3 {
     flex: 1;
+    font-weight: normal;
+    font-size: 20px;
+    color: var(--primary-color-light);
+    text-align: left;
+    vertical-align: top;
+}
+
+.project-info-listing > .row > ul {
+    flex: 1
+}
+
+.project-info-listing li {
+    font-weight: lighter;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+}
+
+.project-info-listing li:before {
+    display: inline-block;
+    content: "-";
+    width: 1em;
+    margin-left: -1em;
+    font-weight: lighter;
 }
 
 .button-1, .button-2 {
