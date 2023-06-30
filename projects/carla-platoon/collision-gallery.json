@@ -1,0 +1,18 @@
+{
+    "rootURL": "/resources/images/carla-platoon-project/collision-gallery",
+    "relativeURL": true,
+    "images": [
+        {
+            "url": "six_platoon_unstable_1.gif",
+            "alt": "Six-vehicle platoon collision 1"
+        },
+        {
+            "url": "six_platoon_unstable_2.gif",
+            "alt": "Six-vehicle platoon collision 2"
+        },
+        {
+            "url": "seven_platoon_chaos.gif",
+            "alt": "Six-vehicle platoon chaotic collision"
+        }
+    ]
+}

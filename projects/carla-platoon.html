@@ -159,18 +159,136 @@
             <div id="carla-platoon-results" class="main-section-group">
                 <h2 class="section-text">Final Results</h2>
                 <div class="section-underline"></div>
+                <p>
+                    The platoon model has shown the ability for following
+                    vehicles to react to movements from the lead vehicle and
+                    other nearby following vehicles...
+                    <br><br>
 
+                    ...albeit a high chance of collisions.
+                    <br><br>
+
+                    Following vehicles have a significant chance of colliding
+                    with their front vehicle when a braking maneuver is taking
+                    place. This is exacerbated as the number of vehicles in the
+                    platoon increases. Typically, a following vehicle may speed
+                    up if they are lagging behind the platoon. However, if the
+                    platoon starts braking, then the speeding following vehicle
+                    will be too fast and cause a collision.
+                    <br><br>
+
+                    A marjor limitation of this platooning model is the lack of
+                    automated lateral control. Following vehicles only perform
+                    acceleration movements automatically. They do not account
+                    for steering.
+                </p>
+
+                <p><br></p>
+
+                <div id="collision-gallery-container" class="image-gallery-container">
+                    <h3>Collision Demonstrations</h3>
+                    <div id="collision-gallery" class="image-gallery"></div>
+                </div>
             </div>
 
             <div id="carla-platoon-issues" class="main-section-group">
                 <h2 class="section-text">Development Issues</h2>
                 <div class="section-underline"></div>
 
+                <h3>CARLA Ease-Of-Use</h3>
+                <p>
+                    I have personally be spoiled since I have only been exposed
+                    to well-documented tooling so far. CARLA was a slap to
+                    reality as the first environment I have used with very
+                    minimal, auto-generated documentation pages.
+                    <br><br>
+
+                    CARLA also doesn't have a lot of convenience methods in its
+                    API. This made it impossible to fine-tune the automated
+                    vehicle controls since I had no knowledge or experience with
+                    PID controllers at the time. 
+                    <br><br>
+                </p>
+
+                <h3>CARLA Build Time</h3>
+                <p>
+                    It takes several hours to setup and build the CARLA
+                    simulator. This is because the simulation and other
+                    necessary resources are multiple gigabytes in size. The
+                    setup also requires building a custom version of the Unreal
+                    Engine.
+                    <br><br>
+
+                    The long build time made me hesitate to mess with modifying
+                    anything in the CARLA world. I didn't want to risk breaking
+                    something and needing to rebuild the project. This
+                    ultimately prevented me from creating a custom testing map.
+                    <br><br>
+                </p>
+
+                <h3>Unreal Engine Complexity</h3>
+                <p>
+                    I expected Unreal Engine to be relatively simple to
+                    understand coming from Unity. However, there were
+                    significant differences that prevented me from being able to
+                    easily add a custom CARLA sensor to the simulation. I
+                    ultimately had to drop the sensor idea for time reasons.
+                    <br><br>
+                </p>
+
+                <h3>First Time With Python</h3>
+                <p>
+                    This project was my first time using Python. I spend a lot
+                    of time going through the documentation of libraries. My
+                    code organization was also very cluttered.
+                    <br><br>
+                </p>
+
+                <h3>Focus On Other Project</h3>
+                <p>
+                    At the time I was working on the platoon system, I was also
+                    working on another project (hint: you're looking at it). I
+                    prioritized that other project, leaving me with less time to
+                    research and develop the platoon system.
+                </p>
+
             </div>
 
             <div id="carla-platoon-learned" class="main-section-group">
                 <h2 class="section-text">What I learned</h2>
                 <div class="section-underline"></div>
+
+                <h3>Searching Source Code</h3>
+                <p>
+                    I needed to search through the CARLA C++ source code to
+                    learn more about specific methods. Gave me experience in
+                    using soure code for research.
+                    <br><br>
+                </p>
+
+                <h3>AV Platoon Systems</h3>
+                <p>
+                    The process of implementing a custom platoon system taught
+                    me about the process and complexities of vehicle automation.
+                    <br><br>
+                </p>
+
+                <h3>Python</h3>
+                <p>
+                    I experienced using Python for the first time and learned
+                    about some basic libraries. 
+                    <br><br>
+                </p>
+
+                <h3>Documentation Reality Check</h3>
+                <p>
+                    Before this project, I have used tooling and environments
+                    that provide documentation on a silver platter. Using CARLA
+                    showed me that not all tools will have amazing 
+                    documentation and resources. I need to do my own testing and
+                    research.
+                    <br><br>
+                </p>
 
             </div>
 

@@ -13,6 +13,7 @@ import { ImageGallery } from "/scripts/ImageGallery.js"
 // let virtualTour = new VirtualTourBuilder();
 
 let demoGallery = null;
+let collisionGallery = null;
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -26,6 +27,10 @@ function init() {
     // Build image galleries
     demoGallery = new ImageGallery(document.getElementById("demo-gallery"));
     demoGallery.loadImages("./carla-platoon/demo-gallery.json")
+
+    collisionGallery = new ImageGallery(
+            document.getElementById("collision-gallery"));
+    collisionGallery.loadImages("./carla-platoon/collision-gallery.json")
 
     // Build virtual tour
     // virtualTour.buildVirtualTour("*TEMP*");
