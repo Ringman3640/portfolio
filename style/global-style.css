@@ -70,6 +70,8 @@ Author: Franz Alarcon
 
     --pop-shadow-offset: 10px;
     --popped-text-side-padding: 12px;
+
+    --main-content-width: 60vw;
 }
 
 
@@ -126,7 +128,7 @@ p {
 }
 
 .main-section {
-    width: 60vw;
+    width: var(--main-content-width);
     margin: auto;
 }
 
@@ -691,6 +693,102 @@ h3.social-card-text {
 button.contact-card {
     background-color: var(--primary-background-color);
     cursor: pointer;
+}
+
+/* Secondary pages */
+#secondary-page-header {
+    width: var(--main-content-width);
+    margin: auto;
+}
+
+#secondary-page-text-banner {
+    font-size: 100px;
+    display: block;
+    width: max-content;
+    padding: 4px 20px;
+    color: black;
+    font-weight: bold;
+    background-color: var(--secondary-color-light);
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+/* Projects Page */
+div.project-grouping {
+    margin-bottom: 80px;
+}
+
+h1.project-grouping-label {
+    font-size: 40px;
+    font-weight: heavy;
+    margin-bottom: 10px;
+}
+
+div.project-strip-container {
+    width:  100%;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+a.project-strip {
+    display: block;
+    background-color: var(--primary-color-light);
+    text-decoration: none;
+    overflow: hidden;
+    width: 100%;
+    height: 100px;
+    padding-left: 25px;
+    padding-right: 25px;
+    z-index: 0;
+}
+
+a.project-strip:hover {
+    height: fit-content;
+    z-index: 1;
+}
+
+h1.project-strip-title {
+    color: white;
+    font-size: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    z-index: 1;
+}
+
+h2.project-strip-type {
+    color: white;
+    z-index: 1;
+}
+
+p.project-strip-description {
+    color: white;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    z-index: 1;
+}
+
+div.project-strip-background-container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+img.project-strip-background {
+    opacity: .4;
+    filter: brightness(1.3) blur(3px);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: all 0.1s linear;
+}
+
+a.project-strip:hover img.project-strip-background {
+    opacity: .4;
+    filter: brightness(0.8) blur(3px);
 }
 
 /* Outbreak-PTO Project Page */

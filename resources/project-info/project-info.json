@@ -1,0 +1,56 @@
+{
+    "projects": [
+        {
+            "name": "Outbreak-PTO",
+            "pageURL": "/projects/outbreak-pto.html",
+            "shortDescription": "A top-down action shooter game built with the Unity Engine.",
+            "longDescription": "A top-down cation shooter game built in the Unity Engine with pixel-art graphics. Gameplay inspired by the roguelike genre.",
+            "projectType": "Group Assignment",
+            "completeYear": "2022",
+            "thumbnailURL": "/resources/images/project-thumbnails/project-outbreakpto-thumbnail.png"
+        },
+        {
+            "name": "Console Menu",
+            "pageURL": "/projects/console-menu.html",
+            "shortDescription": "A console-based C++ GUI for Windows.",
+            "longDescription": "A C++ GUI for the standard Windows C++ output console. Allows for the devlopment of reactive user interfaces within the console.",
+            "projectType": "Individual Project",
+            "completeYear": "2023",
+            "thumbnailURL": "/resources/images/project-thumbnails/project-conu-thumbnail.png"
+        },
+        {
+            "name": "CARLA Platoon System",
+            "pageURL": "/projects/carla-platoon.html",
+            "shortDescription": "An automated platooning system in the CARLA simulator.",
+            "longDescription": "",
+            "projectType": "Individual Assignment",
+            "completeYear": "2023",
+            "thumbnailURL": "/resources/images/project-thumbnails/carla-platoon-thumbnail.png"
+        },
+        {
+            "name": "",
+            "pageURL": "/projects/TEMP.html",
+            "shortDescription": "",
+            "longDescription": "",
+            "projectType": "",
+            "completeYear": "",
+            "thumbnailURL": "/resources/images/project-thumbnails/TEMP"
+        }
+    ],
+
+    "favoriteProjects": [
+        {
+            "name": "Outbreak-PTO"
+        },
+        {
+            "name": "Console Menu"
+        },
+        {
+            "name": "CARLA Platoon System"
+        },
+        {
+            "name": ""
+        }
+    ]
+}
+
