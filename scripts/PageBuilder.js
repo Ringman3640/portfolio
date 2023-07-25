@@ -330,7 +330,7 @@ function buildNavBar() {
         <a href="/projects.html">
             <h2>Projects</h2>
         </a>
-        <a href="/index.html">
+        <a href="/about-me.html">
             <h2>About Me</h2>
         </a>
         <a href="/index.html">

@@ -577,7 +577,7 @@ img.pixel-art {
     color: white;
     font-size: 36px;
     padding: 4px var(--popped-text-side-padding);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .info-card-container {
@@ -599,6 +599,11 @@ img.pixel-art {
     color: inherit;
 }
 
+#home-page-projects > .button-1 {
+    display: block;
+    margin-left: auto;
+}
+
 div.project-listings {
     display: flex;
     gap: 10px;
@@ -608,6 +613,7 @@ div.project-listings {
     width: 100%;
     height: max-content;
     margin: auto;
+    margin-bottom: 30px;
 }
 
 a.project-card {
@@ -629,6 +635,7 @@ a.project-card:hover {
 }
 
 h3.project-title {
+    color: black;
     font-size: 24px;
     height: 30px;
 }
