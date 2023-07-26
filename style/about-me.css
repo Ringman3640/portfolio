@@ -1,0 +1,36 @@
+table {
+    width: 90%;
+    margin: auto;
+    border: 1px solid var(--pale-background);
+    border-collapse: collapse;
+}
+
+tr {
+    height: 30px;
+}
+
+tr:nth-child(odd) {
+    background-color: var(--pale-background);
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    background-color: var(--secondary-color-light);
+    text-align: left;
+    font-size: 20px;
+}
+
+ul.courses-list {
+    margin-left: 60px;
+}
+
+ul.courses-list li {
+    margin-bottom: 20px;
+}
+
+ul.courses-list li:last-child {
+    margin-bottom: inherit;
+}
