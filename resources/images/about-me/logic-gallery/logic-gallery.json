@@ -1,0 +1,22 @@
+{
+    "rootURL": "/resources/images/about-me/logic-gallery",
+    "relativeURL": true,
+    "images": [
+        {
+            "url": "bloodborne-project-logic-1.jpg",
+            "alt": "Logic for LBP3 Bloodborne project"
+        },
+        {
+            "url": "bloodborne-project-logic-2.jpg",
+            "alt": "Logic for LBP3 Bloodborne project with sequencers open"
+        },
+        {
+            "url": "brawler-project-logic.jpg",
+            "alt": "Logic for LBP3 brawler project"
+        },
+        {
+            "url": "hero-project-logic.jpg",
+            "alt": "Logic for LBP3 forgotten hero project"
+        }
+    ]
+}
