@@ -1,0 +1,13 @@
+#console-menu-header {
+    background-color: black;
+    padding: 50px;
+}
+
+#conu-page-image {
+    display: block;
+    margin: auto;
+}
+
+#conu-demonstration img {
+    height: 30vw;
+}
