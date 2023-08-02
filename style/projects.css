@@ -27,7 +27,6 @@ a.project-strip {
 }
 
 a.project-strip:hover {
-    height: fit-content;
     z-index: 1;
 }
 

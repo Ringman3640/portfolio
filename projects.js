@@ -56,6 +56,8 @@ function buildProjectsList(json) {
     for (let year of orderedYears) {
         buildProjectStripGrouping(year, projectGroups[year]);
     }
+
+    applyProjectStripAnimations();
 }
 
 function buildProjectStripGrouping(groupLabel, projects) {
@@ -100,6 +102,73 @@ function buildProjectStripGrouping(groupLabel, projects) {
         `;
     }
 
-    console.log(mainSection);
     mainSection.appendChild(groupingContainer);
+}
+
+function applyProjectStripAnimations() {
+    let projectStrips = document.getElementsByClassName("project-strip");
+    let closedStripHeight = undefined;
+
+    for (let projectStrip of projectStrips) {
+
+        // Obtain initial strip height from first processed strip
+        if (closedStripHeight === undefined) {
+            closedStripHeight = projectStrip.offsetHeight;
+        }
+
+        let startupTimer = null;
+        let openInterval = null;
+        let closeInterval = null;
+
+        let targetOpenHeight = closedStripHeight;
+
+        projectStrip.addEventListener("mouseenter", () => {
+            startupTimer = setTimeout(() => {
+
+                targetOpenHeight = computeStripOpenHeight(projectStrip);
+                if (closeInterval != null) {
+                    clearInterval(closeInterval);
+                }
+                projectStrip.style.zIndex = "1";
+                openInterval = setInterval(() => {
+                    let currentHeight = projectStrip.offsetHeight;
+                    if (currentHeight >= targetOpenHeight) {
+                        projectStrip.style.height = targetOpenHeight + "px";
+                        clearInterval(openInterval);
+                    }
+                    else {
+                        projectStrip.style.height = currentHeight + 10 + "px";
+                    }
+                }, 10); // 10ms between frame changes
+
+            }, 500); // 500ms of hovering before open animation
+        });
+        projectStrip.addEventListener("mouseleave", () => {
+            if (startupTimer != null) {
+                clearTimeout(startupTimer);
+            }
+            if (openInterval != null) {
+                clearInterval(openInterval);
+            }
+            if (projectStrip.offsetHeight > closedStripHeight) {
+                closeInterval = setInterval(() => {
+                    let currentHeight = projectStrip.offsetHeight;
+                    if (currentHeight <= closedStripHeight) {
+                        projectStrip.style.height = closedStripHeight + "px";
+                        projectStrip.style.zIndex = "0";
+                        clearInterval(closeInterval);
+                    }
+                    else {
+                        projectStrip.style.height = currentHeight - 10 + "px";
+                    }
+                }, 10); // 10ms between frame changes
+            }
+        });
+    }
+}
+
+function computeStripOpenHeight(projectStrip) {
+    // From testing, scrollHeight seems to be off by +5 units from the actual
+    //     content height. 
+    return projectStrip.scrollHeight - 5;
 }
