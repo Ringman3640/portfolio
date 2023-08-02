@@ -125,8 +125,6 @@ function applyProjectStripAnimations() {
         let targetOpenHeight = closedStripHeight;
 
         projectStrip.addEventListener("mouseover", () => {
-
-            // Open tranision animation
             startupTimer = setTimeout(() => {
 
                 // From testing, scrollHeight seems to be off by +5 units from
@@ -138,6 +136,8 @@ function applyProjectStripAnimations() {
                     closeInterval = null;
                 }
                 projectStrip.style.zIndex = "1";
+
+                // Open tranision animation
                 openInterval = setInterval(() => {
                     let currentHeight = projectStrip.offsetHeight;
                     if (currentHeight >= targetOpenHeight) {
