@@ -108,6 +108,8 @@ function buildProjectStripGrouping(groupLabel, projects) {
 function applyProjectStripAnimations() {
     let projectStrips = document.getElementsByClassName("project-strip");
     let closedStripHeight = undefined;
+    let transitionIncrementPx = 10;
+    let transitionIntervalMs = 10;
 
     for (let projectStrip of projectStrips) {
 
@@ -122,12 +124,18 @@ function applyProjectStripAnimations() {
 
         let targetOpenHeight = closedStripHeight;
 
-        projectStrip.addEventListener("mouseenter", () => {
+        projectStrip.addEventListener("mouseover", () => {
+
+            // Open tranision animation
             startupTimer = setTimeout(() => {
 
-                targetOpenHeight = computeStripOpenHeight(projectStrip);
+                // From testing, scrollHeight seems to be off by +5 units from
+                //     the actualcontent height. 
+                targetOpenHeight = projectStrip.scrollHeight - 5;
+
                 if (closeInterval != null) {
                     clearInterval(closeInterval);
+                    closeInterval = null;
                 }
                 projectStrip.style.zIndex = "1";
                 openInterval = setInterval(() => {
@@ -135,33 +143,42 @@ function applyProjectStripAnimations() {
                     if (currentHeight >= targetOpenHeight) {
                         projectStrip.style.height = targetOpenHeight + "px";
                         clearInterval(openInterval);
+                        openInterval = null;
                     }
                     else {
-                        projectStrip.style.height = currentHeight + 10 + "px";
+                        projectStrip.style.height = currentHeight
+                                + transitionIncrementPx + "px";
                     }
-                }, 10); // 10ms between frame changes
+                }, transitionIntervalMs);
 
             }, 500); // 500ms of hovering before open animation
         });
-        projectStrip.addEventListener("mouseleave", () => {
+        projectStrip.addEventListener("mouseout", () => {
             if (startupTimer != null) {
                 clearTimeout(startupTimer);
+                startupTimer = null;
             }
             if (openInterval != null) {
                 clearInterval(openInterval);
+                openInterval = null;
             }
-            if (projectStrip.offsetHeight > closedStripHeight) {
+            if (closeInterval == null 
+                    && projectStrip.offsetHeight > closedStripHeight) {
+
+                // Close strip transition animation
                 closeInterval = setInterval(() => {
                     let currentHeight = projectStrip.offsetHeight;
                     if (currentHeight <= closedStripHeight) {
                         projectStrip.style.height = closedStripHeight + "px";
                         projectStrip.style.zIndex = "0";
                         clearInterval(closeInterval);
+                        closeInterval = null;
                     }
                     else {
-                        projectStrip.style.height = currentHeight - 10 + "px";
+                        projectStrip.style.height = currentHeight
+                                - transitionIncrementPx + "px";
                     }
-                }, 10); // 10ms between frame changes
+                }, transitionIntervalMs);
             }
         });
     }
