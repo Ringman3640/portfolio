@@ -70,19 +70,6 @@
     float: right;
 }
 
-.main-section-group {
-    margin-bottom: 80px;
-}
-
-.main-section-header {
-    background-color: var(--primary-color-light);
-    box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
-    color: white;
-    font-size: 36px;
-    padding: 4px var(--popped-text-side-padding);
-    margin-bottom: 30px;
-}
-
 .info-card-container {
     display: block;
     width: var(--card-width);
