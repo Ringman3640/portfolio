@@ -74,6 +74,23 @@ Author: Franz Alarcon
     --main-content-width: 60vw;
 }
 
+/*
+Media query sizing:
+Tablet - max-width: 900px
+Phone  - max-width: 500px
+*/
+
+@media screen and (max-width: 900px) {
+    :root {
+        --main-content-width: 80vw;
+    }
+}
+@media screen and (max-width: 400px) {
+    :root {
+        --main-content-width: 95vw;
+    }
+}
+
 
 /* Global Reset */
 * {
