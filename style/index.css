@@ -89,7 +89,8 @@
     color: inherit;
 }
 
-#home-page-projects > .button-1 {
+#home-page-projects > .button-2,
+#home-about-me > .button-2 {
     display: block;
     margin-left: auto;
 }
