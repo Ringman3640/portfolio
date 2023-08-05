@@ -72,6 +72,9 @@ Author: Franz Alarcon
     --popped-text-side-padding: 12px;
 
     --main-content-width: 60vw;
+
+    --nav-bar-text-size: 30px;
+    --nav-bar-size-margin: 40px;
 }
 
 /*
@@ -83,11 +86,17 @@ Phone  - max-width: 500px
 @media only screen and (max-width: 900px) {
     :root {
         --main-content-width: 80vw;
+
+        --nav-bar-text-size: 26px;
+        --nav-bar-size-margin: 30px;
     }
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
     :root {
         --main-content-width: 95vw;
+
+        --nav-bar-text-size: 20px;
+        --nav-bar-size-margin: 10px;
     }
 }
 
@@ -176,6 +185,12 @@ div.project-info-container {
     justify-content: space-between;
     gap: 40px;
 }
+@media only screen and (max-width: 900px) {
+    div.project-info-container {
+        flex-wrap: wrap;
+    }
+}
+
 
 div.project-info-group {
     width: 500px;
@@ -514,6 +529,11 @@ img.pixel-art {
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
     margin-bottom: var(--pop-shadow-offset);
 }
+@media only screen and (max-width: 500px) {
+    #nav-bar-container {
+        justify-content: space-around;
+    }
+}
 
 #nav-bar-container a {
     background-color: inherit;
@@ -528,10 +548,11 @@ img.pixel-art {
 
 #nav-bar-container h2 {
     color: white;
+    font-size: var(--nav-bar-text-size);
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: var(--nav-bar-size-margin);
+    margin-right: var(--nav-bar-size-margin);
 }
 
 
@@ -552,4 +573,17 @@ img.pixel-art {
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
     margin-top: 40px;
     margin-bottom: 80px;
+}
+@media only screen and (max-width: 900px) {
+    #secondary-page-text-banner {
+        font-size: 80px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    #secondary-page-text-banner {
+        font-size: 56px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 40px;
+    }
 }

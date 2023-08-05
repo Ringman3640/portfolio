@@ -333,9 +333,6 @@ function buildNavBar() {
         <a href="/about-me.html">
             <h2>About Me</h2>
         </a>
-        <a href="/index.html">
-            <h2>Contact</h2>
-        </a>
     `;
 }
 
