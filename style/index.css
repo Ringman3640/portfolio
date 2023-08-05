@@ -1,6 +1,4 @@
 :root {
-    --banner-height: 800px;
-
     --card-width: 260px;
     --card-height: 290px;
 }
@@ -16,6 +14,7 @@
 
 #home-banner-container {
     display: flex;
+    gap: 20px;
     justify-content: space-between;
     flex-direction: row;
     width: 100vw;
@@ -23,6 +22,7 @@
 }
 
 #home-banner-img-container {
+    width: 30%;
     height: 100%;
     overflow: hidden;
     padding-bottom: var(--pop-shadow-offset);
@@ -37,8 +37,15 @@
 }
 
 #home-banner-text {
+    flex-grow: 1;
+    min-width: 0;
     height: 100%;
     padding-bottom: var(--pop-shadow-offset);
+}
+@media only screen and (max-width: 500px) {
+    #home-banner-text {
+        
+    }
 }
 
 #home-banner-text-intro,

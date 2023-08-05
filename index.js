@@ -52,11 +52,6 @@ function init() {
 //      viewport width. The remaining width is taken by the banner image.
 const textContentPercent = 0.7;
 
-// Text-image gap
-// Defines the gap between the text content and the profile image (in px).
-// The gap cuts equally into both regions of the text and image.
-const textImageGap = 20;
-
 // Individual text element scaling
 // Defines the width of each text element relative to its allotted space.
 const introTextWidth = 0.25;     // "Hello, I'm"
@@ -75,13 +70,8 @@ function resizeBanner() {
         return;
     }
 
-    // Distribute available viewport width to text and profile containers.
-    let usableWidth = window.innerWidth - totalBannerPaddingWidth 
-            - textImageGap;
-    let textWidth = usableWidth * textContentPercent;
-    let profWidth = usableWidth - textWidth;
-    textContainer.style.width = textWidth + "px";
-    profContainer.style.width = profWidth + "px";
+    // Calculate usable width considering padding
+    let usableWidth = window.innerWidth - totalBannerPaddingWidth;
 
     // Resize text elements to fit text container width
     let containerWidth = textContainer.offsetWidth;
