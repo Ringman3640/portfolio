@@ -156,6 +156,7 @@ p.project-description {
 .icon-card-container {
     background-color: var(--primary-background-color);
     flex-shrink: 1;
+    min-width: 0;
     width: var(--card-width);
     height: fit-content;
 }
