@@ -191,5 +191,7 @@ button.icon-card {
 .icon-card h3 {
     text-align: center;
     text-decoration: none;
+    overflow-wrap: anywhere;
+    word-break: normal;
     margin-bottom: 10px;
 }
