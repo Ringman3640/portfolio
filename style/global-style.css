@@ -293,10 +293,22 @@ div.project-info-group div.section-underline {
     margin-left: auto;
 }
 
+.square-container {
+    width: 100%;
+    padding-bottom: 100%;
+}
+
+.square-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 
 /* Effects */
 .grow-shade-on-hover {
-    position: absolute;
     z-index: 0;
     transition: transform 0.1s ease-in-out;
     box-shadow: none;
