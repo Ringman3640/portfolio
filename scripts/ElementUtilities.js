@@ -3,6 +3,7 @@
 
 import { registerImage, registerImageSet } from "/scripts/ImageGallery.js"
 
+// fadeInPage global config
 let fadeDurationMs = 50;
 
 // fadeInPage function
@@ -112,6 +113,108 @@ function registerDisplayImages() {
     }
 }
 
+// registerScalingText global config
+let scaleEventListenerSet = false;
+let fitScaleElements = [];
+let shrinkScaleElements = [];
+
+// registerScalingText function
+// Registers all scaling text elements currently within the DOM. Scaling text
+//     elements will change their text font size to fit its text contents within
+//     the element width, accounting for size padding. There are two types of
+//     scaling text options, specified with the following classes:
+// 
+//     1. fit-scale-text
+//     2. shrink-scale-text
+//
+// fit-scale-text will resize the text contents such that it fully occupies the
+//     element width. shrink-scale-text will keep the original font size of the
+//     text until needs to be shrunk to fit the element width.
+// 
+// shrink-scale-text does not react to font-size changes while the text is
+//     currently shrunk.
+function registerScalingText() {
+    if (!scaleEventListenerSet) {
+        window.addEventListener("resize", scaleTextRoutine);
+        scaleEventListenerSet = true;
+    }
+
+    let fitScaleText = document.querySelectorAll(
+            "[class^='fit-scale-text']," + " [class*=' fit-scale-text']");
+    for (const fitElement of fitScaleText) {
+        fitScaleElements.push(fitElement);
+    }
+
+    let shrinkScaleText = document.querySelectorAll(
+            "[class^='shrink-scale-text']," + " [class*=' shrink-scale-text']");
+    for (const shrinkElement of shrinkScaleText) {
+        let fontSize = parseFloat(window.getComputedStyle(shrinkElement)
+            .getPropertyValue("font-size"));
+        shrinkScaleElements.push({
+            element: shrinkElement,         // Stored element reference
+            origFontSize: fontSize,         // Original font size before shrink
+            seenFontSize: fontSize + "px"   // Last recorded font size. See 
+                                            //     scaleTextRoutine() notes
+        });
+    }
+
+    scaleTextRoutine();
+}
+
+// scaleTextRoutine function
+// Routine function that applies scaling text behavior to registered scaling
+//     text elements.
+function scaleTextRoutine() {
+    for (let elem of fitScaleElements) {
+        let elemStyle = window.getComputedStyle(elem);
+        let fontSize = parseFloat(elemStyle.getPropertyValue("font-size"));
+        let availableWidth = elem.clientWidth
+                - parseFloat(elemStyle.getPropertyValue("padding-left"))
+                - parseFloat(elemStyle.getPropertyValue("padding-right"));
+        let scaler = availableWidth / getElementTextWidth(elem, elemStyle);
+
+        elem.style.fontSize = fontSize * scaler + "px";
+    }
+
+    for (let elemObject of shrinkScaleElements) {
+        let elem = elemObject.element;
+        let elemStyle = window.getComputedStyle(elem);
+        let fontSize = parseFloat(elemStyle.getPropertyValue("font-size"));
+        let availableWidth = elem.clientWidth
+                - parseFloat(elemStyle.getPropertyValue("padding-left"))
+                - parseFloat(elemStyle.getPropertyValue("padding-right"));
+        let scaler = availableWidth / getElementTextWidth(elem, elemStyle);
+
+        // Check if the observed font size is different from the last seen font
+        //     size. This is to ensure origFontSize is updated if the CSS
+        //     font size is changed externally while currently shrunk.
+        if (elemObject.seenFontSize != elem.style.fontSize) {
+            elemObject.origFontSize = fontSize;
+        }
+        
+        // Only scale up to original font size. Otherwise, set font size to 
+        //     original size.
+        let nextFontSize = fontSize * scaler;
+        if (nextFontSize > elemObject.origFontSize) {
+            nextFontSize = elemObject.origFontSize;
+        }
+
+        elem.style.fontSize = nextFontSize + "px";
+        elemObject.seenFontSize = elem.style.fontSize;
+    }
+}
+
+// getElementTextWidth function
+// Calculates and returns the width of the provided element's innerHTML text
+//     given its computed style.
+// Helper function for scaleTextRoutine
+let textWidthCanvas = document.createElement("canvas");
+let textWidthContext = textWidthCanvas.getContext("2d");
+function getElementTextWidth(elem, compStyle) {
+    textWidthContext.font = compStyle.font;
+    return textWidthContext.measureText(elem.textContent.trim()).width;
+}
+
 // applyBehavioralUtilities function
 // Applies all utilities that are used setup a page. These include utilities
 //     that are intended for use before the page fully loads in and utilities
@@ -121,11 +224,13 @@ function registerDisplayImages() {
 function applySetupUtilities() {
     addAnchorFadeOut();
     registerDisplayImages();
+    registerScalingText();
 }
 
 export {
     fadeInPage,
     addAnchorFadeOut,
     registerDisplayImages,
+    registerScalingText,
     applySetupUtilities
 }
