@@ -47,18 +47,6 @@ function init() {
 // Scales the banner text and banner image according to the following data 
 //      attribtues:
 
-// Width distribution
-// Defines the percentage of how much the banner text will cover the total 
-//      viewport width. The remaining width is taken by the banner image.
-const textContentPercent = 0.7;
-
-// Individual text element scaling
-// Defines the width of each text element relative to its allotted space.
-const introTextWidth = 0.25;     // "Hello, I'm"
-const nameTextWidth = 0.85;      // "Franz Alarcon"
-const profTextWidth = 0.85;      // "Software Developer"
-const minTextSize = 1;
-
 // Name-Profession gap
 // Defines the gap between the name and profession text of he banner based as
 //      a percentage of the text width.
