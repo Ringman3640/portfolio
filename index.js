@@ -1,5 +1,5 @@
 import { initCopyClipboardButtons } from "/scripts/PageBuilder.js";
-import { fadeInPage, addAnchorFadeOut } from "/scripts/ElementUtilities.js"
+import { fadeInPage, applySetupUtilities } from "/scripts/ElementUtilities.js"
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -36,10 +36,10 @@ function init() {
     totalTextPaddingWidth *= 2;
 
     initCopyClipboardButtons();
-    resizeBanner();
     window.addEventListener("resize", resizeBanner);
 
-    addAnchorFadeOut();
+    applySetupUtilities();
+    resizeBanner();
     fadeInPage();
 }
 
@@ -73,37 +73,10 @@ function resizeBanner() {
     // Calculate usable width considering padding
     let usableWidth = window.innerWidth - totalBannerPaddingWidth;
 
-    // Resize text elements to fit text container width
-    let containerWidth = textContainer.offsetWidth;
-    if (containerWidth == 0) {
-        return;
-    }
-    fitBannerText(introText, containerWidth * introTextWidth);
-    fitBannerText(nameText, containerWidth * nameTextWidth);
-    fitBannerText(profText, containerWidth * profTextWidth);
-
     // Apply percentage name-profession text gap
     nameText.style.marginBottom = (usableWidth * nameProfGap) + "px";
 
     // Resize profile image height to match text height
     profContainer.style.height = textContainer.offsetHeight + "px";
 
-}
-
-// Fit a banner text element within a provided maxWidth value.
-// Scales the text element to have an width approximately equal to maxWidth.
-function fitBannerText(element, maxWidth) {
-    let scaler = (maxWidth - totalTextPaddingWidth) 
-            / (element.offsetWidth - totalTextPaddingWidth);
-    let fontSize = parseFloat(window.getComputedStyle(element)
-            .getPropertyValue("font-size"));
-    fontSize *= scaler;
-
-    // Need to check if fontSize < 1 to prevent infinite downsizing. This would
-    //      typically affect the into text and make it invisibly small in 
-    //      certain resizes.
-    if (fontSize < minTextSize) {
-        fontSize = minTextSize;
-    }
-    element.style.fontSize = fontSize + "px";
 }

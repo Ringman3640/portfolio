@@ -58,10 +58,12 @@
 }
 
 #home-banner-text-intro {
+    width: 25%;
     background-color: white;
 }
 
 #home-banner-text-name {
+    width: 85%;
     color: white;
     font-weight: bold;
     background-color: var(--primary-color-light);
@@ -70,6 +72,7 @@
 }
 
 #home-banner-text-profession {
+    width: 85%;
     color: black;
     font-weight: bold;
     background-color: var(--secondary-color-light);
