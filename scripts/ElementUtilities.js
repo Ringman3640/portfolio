@@ -141,13 +141,17 @@ function registerScalingText() {
 
     let fitScaleText = document.querySelectorAll(
             "[class^='fit-scale-text']," + " [class*=' fit-scale-text']");
-    for (const fitElement of fitScaleText) {
+    for (let fitElement of fitScaleText) {
+        fitElement.style.whiteSpace = "nowrap";
+        fitElement.style.overflow = "hidden";
         fitScaleElements.push(fitElement);
     }
 
     let shrinkScaleText = document.querySelectorAll(
             "[class^='shrink-scale-text']," + " [class*=' shrink-scale-text']");
     for (const shrinkElement of shrinkScaleText) {
+        shrinkElement.style.whiteSpace = "nowrap";
+        shrinkElement.style.overflow = "hidden";
         let fontSize = parseFloat(window.getComputedStyle(shrinkElement)
             .getPropertyValue("font-size"));
         shrinkScaleElements.push({
@@ -164,6 +168,7 @@ function registerScalingText() {
 // scaleTextRoutine function
 // Routine function that applies scaling text behavior to registered scaling
 //     text elements.
+let minFontSize = 1;        // Needed to prevent infinitely shrinking text
 function scaleTextRoutine() {
     for (let elem of fitScaleElements) {
         let elemStyle = window.getComputedStyle(elem);
@@ -173,7 +178,13 @@ function scaleTextRoutine() {
                 - parseFloat(elemStyle.getPropertyValue("padding-right"));
         let scaler = availableWidth / getElementTextWidth(elem, elemStyle);
 
-        elem.style.fontSize = fontSize * scaler + "px";
+        let nextFontSize = fontSize * scaler;
+        if (nextFontSize >= minFontSize) {
+            elem.style.fontSize = nextFontSize + "px";
+        }
+        else {
+            elem.style.fontSize = minFontSize + "px";
+        }
     }
 
     for (let elemObject of shrinkScaleElements) {
@@ -197,6 +208,11 @@ function scaleTextRoutine() {
         let nextFontSize = fontSize * scaler;
         if (nextFontSize > elemObject.origFontSize) {
             nextFontSize = elemObject.origFontSize;
+        }
+
+        // Check for minimum text size
+        if (nextFontSize < minFontSize) {
+            nextFontSize = minFontSize;
         }
 
         elem.style.fontSize = nextFontSize + "px";
