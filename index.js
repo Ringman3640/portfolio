@@ -36,35 +36,6 @@ function init() {
     totalTextPaddingWidth *= 2;
 
     initCopyClipboardButtons();
-    window.addEventListener("resize", resizeBanner);
-
     applySetupUtilities();
-    resizeBanner();
     fadeInPage();
-}
-
-// Resize the home page banner dynamically to fit the width of the view port.
-// Scales the banner text and banner image according to the following data 
-//      attribtues:
-
-// Name-Profession gap
-// Defines the gap between the name and profession text of he banner based as
-//      a percentage of the text width.
-const nameProfGap = 0.05;
-
-function resizeBanner() {
-    // This seems very unnecessary but imma just be sure
-    if (window.innerWidth <= 0) {
-        return;
-    }
-
-    // Calculate usable width considering padding
-    let usableWidth = window.innerWidth - totalBannerPaddingWidth;
-
-    // Apply percentage name-profession text gap
-    nameText.style.marginBottom = (usableWidth * nameProfGap) + "px";
-
-    // Resize profile image height to match text height
-    profContainer.style.height = textContainer.offsetHeight + "px";
-
 }

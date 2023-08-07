@@ -7,6 +7,7 @@
     background-color: none;
     left: 0;
     width: 100vw;
+    height: 30vw;
     padding: 0px;
     margin: 0px;
     margin-bottom: 100px;
@@ -18,14 +19,12 @@
     justify-content: space-between;
     flex-direction: row;
     width: 100vw;
+    height: 34vw;
     padding: 20px;
 }
 
 #home-banner-img-container {
     width: 30%;
-    height: 100%;
-    overflow: hidden;
-    padding-bottom: var(--pop-shadow-offset);
 }
 
 #home-banner-img {
@@ -68,16 +67,17 @@
     font-weight: bold;
     background-color: var(--primary-color-light);
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
-    margin-bottom: 80px;
 }
 
 #home-banner-text-profession {
+    position: absolute;
     width: 85%;
     color: black;
     font-weight: bold;
     background-color: var(--secondary-color-light);
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
-    float: right;
+    bottom: 0;
+    right: 0; 
 }
 
 .info-card-container {
