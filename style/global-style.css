@@ -256,6 +256,7 @@ div.project-info-group div.section-underline {
     font-weight: normal;
     text-align: center;
     text-decoration: none;
+    border-radius: 6px;
     padding: 10px;
     transition: all 0.1s linear;
     cursor: pointer;
