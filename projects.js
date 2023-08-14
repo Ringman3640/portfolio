@@ -26,11 +26,11 @@ function init() {
     fadeInPage();
 }
 
-function buildProjectsList(json) {
+function buildProjectsList(projectArray) {
     let projectGroups = {};
 
     // Group projects by year
-    for (let project of json.projects) {
+    for (let project of projectArray) {
         if (!("completeYear" in project) || project.completeYear == "") {
             continue;
         }
