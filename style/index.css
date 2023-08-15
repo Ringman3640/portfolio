@@ -142,82 +142,66 @@
     }
 }
 
-.info-card-container {
-    display: block;
-    width: var(--card-width);
-    height: var(--card-height);
-    text-decoration: none;
-    color: inherit;
-}
-
-.info-card {
-    position: absolute;
-    background-color: var(--secondary-color-light);
-    width: var(--card-width);
-    height: var(--card-height);
-    padding: var(--default-padding-size);
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-}
-
 #home-page-projects > .button-2,
 #home-about-me > .button-2 {
     display: block;
     margin-left: auto;
 }
 
-div.project-listings {
+.project-card-set {
     display: flex;
     gap: 10px;
     row-gap: 40px;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 100%;
-    height: max-content;
+    height: 320px;
     margin: auto;
     margin-bottom: 30px;
 }
 
-a.project-card {
-    position: absolute;
-    background-color: var(--secondary-color-light);
-    box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
+.project-card-container {
     width: var(--card-width);
-    height: var(--card-height);
-    padding: var(--default-padding-size);
-    overflow: hidden;
-    text-decoration: none;
+    height: fit-content;
+}
+
+.project-card {
+    display: inline-block;
+    background-color: var(--secondary-color-light);
+    text-decoration: inherit;
     color: inherit;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 0px 6px black;
+    width: 100%;
+    transition: 0.1s ease-in-out;
 }
 
-a.project-card:hover {
-    height: max-content;
-    box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark), 
-        0px 0px 5px black;
+.project-card:hover {
+    z-index: 1;
+    transform: scale(1.04);
+    box-shadow: 0px 0px 10px black;
+
 }
 
-h3.project-title {
-    color: black;
-    font-size: 24px;
-    height: 30px;
-}
-
-div.project-image-container {
-    box-sizing: border-box;
-    width: calc((260px - var(--default-padding-size) * 2));
-    height: calc((260px - var(--default-padding-size) * 2));
-    margin: auto;
-}
-
-img.project-image {
+.project-card img {
+    object-fit: cover;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    overflow: hidden;
 }
 
-p.project-description {
-    margin-top: 10px;
+.project-card h2 {
+    margin: 10px;
+}
+
+.project-card p {
+    display: none;
+    margin: 10px;
+}
+
+.project-card:hover p {
+    display: block;
+    margin: 10px;
 }
 
 .icon-card-set {

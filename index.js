@@ -1,41 +1,39 @@
 import { initCopyClipboardButtons } from "/scripts/PageBuilder.js";
-import { fadeInPage, applySetupUtilities } from "/scripts/ElementUtilities.js"
+import { fadeInPage, applySetupUtilities } from "/scripts/ElementUtilities.js";
+import { getFavoriteProjects } from "/scripts/ProjectUtilities.js";
 
 document.addEventListener("DOMContentLoaded", init);
 
-// Document element references
-let bannerContainer = null;
-let textContainer = null;
-let introText = null;
-let nameText = null;
-let profText = null;
-let profContainer = null;
-let profImg = null;
-
-// Used in fitBannerText()
-let totalBannerPaddingWidth = null;
-let totalTextPaddingWidth = null;
-
 function init() {
-    bannerContainer = document.getElementById("home-banner-container");
-    textContainer = document.getElementById("home-banner-text");
-    introText = document.getElementById("home-banner-text-intro");
-    nameText = document.getElementById("home-banner-text-name");
-    profText = document.getElementById("home-banner-text-profession");
-    profContainer = document.getElementById("home-banner-img-container");
-    profImg = document.getElementById("home-banner-img");
-
-    totalBannerPaddingWidth = window.getComputedStyle(bannerContainer)
-            .getPropertyValue("padding");
-    totalBannerPaddingWidth = parseInt(totalBannerPaddingWidth, 10);
-    totalBannerPaddingWidth *= 2;
-
-    totalTextPaddingWidth = window.getComputedStyle(nameText)
-            .getPropertyValue("padding-left");
-    totalTextPaddingWidth = parseInt(totalTextPaddingWidth, 10);
-    totalTextPaddingWidth *= 2;
-
+    getFavoriteProjects()
+        .then(projects => {
+            buildProjectCardSet(projects);
+        });
     initCopyClipboardButtons();
     applySetupUtilities();
     fadeInPage();
+}
+
+function buildProjectCardSet(projects) {
+    let cardSetContainer = document.getElementById("project-card-listings");
+    for (let project of projects) {
+        cardSetContainer.innerHTML += `
+        <div class="project-card-container">
+            <a href="${ project.pageURL }" class="project-card">
+                <div class="square-container">
+                    <div class="square-content">
+                        <img src="${ project.thumbnailURL }" 
+                            alt="Thumbnail image for ${ project.name } project.">
+                    </div>
+                </div>
+                <h2>
+                    ${ project.name }
+                </h2>
+                <p>
+                    ${ project.shortDescription }
+                </p>
+            </a>
+        </div>
+        `;
+    }
 }
