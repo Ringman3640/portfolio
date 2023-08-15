@@ -115,8 +115,8 @@ function registerDisplayImages() {
 
 // registerScalingText global config
 let scaleEventListenerSet = false;
-let fitScaleElements = [];
-let shrinkScaleElements = [];
+let fitScaleElements = new Set();
+let shrinkScaleElements = new Set();
 
 // registerScalingText function
 // Registers all scaling text elements currently within the DOM. Scaling text
@@ -144,7 +144,7 @@ function registerScalingText() {
     for (let fitElement of fitScaleText) {
         fitElement.style.whiteSpace = "nowrap";
         fitElement.style.overflow = "hidden";
-        fitScaleElements.push(fitElement);
+        fitScaleElements.add(fitElement);
     }
 
     let shrinkScaleText = document.querySelectorAll(
@@ -154,7 +154,7 @@ function registerScalingText() {
         shrinkElement.style.overflow = "hidden";
         let fontSize = parseFloat(window.getComputedStyle(shrinkElement)
             .getPropertyValue("font-size"));
-        shrinkScaleElements.push({
+        shrinkScaleElements.add({
             element: shrinkElement,         // Stored element reference
             origFontSize: fontSize,         // Original font size before shrink
             seenFontSize: fontSize + "px"   // Last recorded font size. See 
