@@ -1,5 +1,5 @@
 import { buildNavBar } from "/scripts/PageBuilder.js"
-import { fadeInPage, addAnchorFadeOut } from "/scripts/ElementUtilities.js"
+import { fadeInPage, addAnchorFadeOut, registerScalingText } from "/scripts/ElementUtilities.js"
 import { getAllProjects } from "/scripts/ProjectUtilities.js"
 
 document.addEventListener("DOMContentLoaded", init);
@@ -57,7 +57,10 @@ function buildProjectsList(projectArray) {
         buildProjectStripGrouping(year, projectGroups[year]);
     }
 
-    applyProjectStripAnimations();
+    // Only apply hover animations if device can hover
+    if (window.matchMedia("(hover: hover)").matches) {
+        applyProjectStripAnimations();
+    }
 }
 
 function buildProjectStripGrouping(groupLabel, projects) {
@@ -88,7 +91,7 @@ function buildProjectStripGrouping(groupLabel, projects) {
         groupingContainer.innerHTML += `
             <div class="project-strip-container">
                 <a href="${pageURL}" class="project-strip">
-                    <h1 class="project-strip-title">${name}</h1>
+                    <h1 class="project-strip-title shrink-scale-text">${name}</h1>
                     <h2 class="project-strip-type">${type}</h2>
                     <p class="project-strip-description">
                         ${description}
@@ -103,6 +106,7 @@ function buildProjectStripGrouping(groupLabel, projects) {
     }
 
     mainSection.appendChild(groupingContainer);
+    registerScalingText();
 }
 
 function applyProjectStripAnimations() {
@@ -139,19 +143,16 @@ function applyProjectStripAnimations() {
 
                 // Open tranision animation
                 openInterval = setInterval(() => {
-                    let currentHeight = projectStrip.offsetHeight;
-                    if (currentHeight >= targetOpenHeight) {
+                    projectStrip.style.height = projectStrip.offsetHeight
+                            + transitionIncrementPx + "px";
+                    if (projectStrip.offsetHeight >= targetOpenHeight) {
                         projectStrip.style.height = targetOpenHeight + "px";
                         clearInterval(openInterval);
                         openInterval = null;
                     }
-                    else {
-                        projectStrip.style.height = currentHeight
-                                + transitionIncrementPx + "px";
-                    }
                 }, transitionIntervalMs);
 
-            }, 500); // 500ms of hovering before open animation
+            }, 300); // 300ms of hovering before open animation
         });
         projectStrip.addEventListener("mouseout", () => {
             if (startupTimer != null) {
@@ -167,16 +168,13 @@ function applyProjectStripAnimations() {
 
                 // Close strip transition animation
                 closeInterval = setInterval(() => {
-                    let currentHeight = projectStrip.offsetHeight;
-                    if (currentHeight <= closedStripHeight) {
+                    projectStrip.style.height = projectStrip.offsetHeight
+                            - transitionIncrementPx + "px";
+                    if (projectStrip.offsetHeight <= closedStripHeight) {
                         projectStrip.style.height = closedStripHeight + "px";
                         projectStrip.style.zIndex = "0";
                         clearInterval(closeInterval);
                         closeInterval = null;
-                    }
-                    else {
-                        projectStrip.style.height = currentHeight
-                                - transitionIncrementPx + "px";
                     }
                 }, transitionIntervalMs);
             }
