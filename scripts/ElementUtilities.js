@@ -116,7 +116,7 @@ function registerDisplayImages() {
 // registerScalingText global config
 let scaleEventListenerSet = false;
 let fitScaleElements = new Set();
-let shrinkScaleElements = new Set();
+let shrinkScaleElements = new Map();
 
 // registerScalingText function
 // Registers all scaling text elements currently within the DOM. Scaling text
@@ -154,8 +154,7 @@ function registerScalingText() {
         shrinkElement.style.overflow = "hidden";
         let fontSize = parseFloat(window.getComputedStyle(shrinkElement)
             .getPropertyValue("font-size"));
-        shrinkScaleElements.add({
-            element: shrinkElement,         // Stored element reference
+        shrinkScaleElements.set(shrinkElement, {
             origFontSize: fontSize,         // Original font size before shrink
             seenFontSize: fontSize + "px"   // Last recorded font size. See 
                                             //     scaleTextRoutine() notes
@@ -187,8 +186,7 @@ function scaleTextRoutine() {
         }
     }
 
-    for (let elemObject of shrinkScaleElements) {
-        let elem = elemObject.element;
+    for (let [elem, elemAttributes] of shrinkScaleElements) {
         let elemStyle = window.getComputedStyle(elem);
         let fontSize = parseFloat(elemStyle.getPropertyValue("font-size"));
         let availableWidth = elem.clientWidth
@@ -199,15 +197,15 @@ function scaleTextRoutine() {
         // Check if the observed font size is different from the last seen font
         //     size. This is to ensure origFontSize is updated if the CSS
         //     font size is changed externally while currently shrunk.
-        if (elemObject.seenFontSize != elem.style.fontSize) {
-            elemObject.origFontSize = fontSize;
+        if (elemAttributes.seenFontSize != elem.style.fontSize) {
+            elemAttributes.origFontSize = fontSize;
         }
         
         // Only scale up to original font size. Otherwise, set font size to 
         //     original size.
         let nextFontSize = fontSize * scaler;
-        if (nextFontSize > elemObject.origFontSize) {
-            nextFontSize = elemObject.origFontSize;
+        if (nextFontSize > elemAttributes.origFontSize) {
+            nextFontSize = elemAttributes.origFontSize;
         }
 
         // Check for minimum text size
@@ -216,7 +214,7 @@ function scaleTextRoutine() {
         }
 
         elem.style.fontSize = nextFontSize + "px";
-        elemObject.seenFontSize = elem.style.fontSize;
+        elemAttributes.seenFontSize = elem.style.fontSize;
     }
 }
 
