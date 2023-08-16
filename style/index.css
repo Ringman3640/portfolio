@@ -1,6 +1,17 @@
 :root {
     --card-width: 260px;
-    --card-height: 290px;
+    --card-height: 320px;
+    --card-border-radius: 20px;
+}
+@media only screen and (max-width: 670px) {
+    :root {
+        --card-width: 230px;
+    }
+}
+@media only screen and (max-width: 590px) {
+    :root {
+        --card-width: 195px;
+    }
 }
 
 #home-page-header {
@@ -154,7 +165,6 @@
     row-gap: 40px;
     justify-content: space-between;
     flex-wrap: wrap;
-    height: 320px;
     margin: auto;
     margin-bottom: 30px;
 }
@@ -163,24 +173,36 @@
     width: var(--card-width);
     height: fit-content;
 }
+@media (hover: hover) {
+    .project-card-container {
+        height: var(--card-height);
+    }
+}
+@media only screen and (max-width: 500px) {
+    .project-card-container {
+        width: 80%;
+        height: fit-content;
+        margin: auto;
+    }
+}
 
 .project-card {
     display: inline-block;
     background-color: var(--secondary-color-light);
     text-decoration: inherit;
     color: inherit;
-    border-radius: 20px;
+    border-radius: var(--card-border-radius);
     overflow: hidden;
     box-shadow: 0px 0px 6px black;
     width: 100%;
     transition: 0.1s ease-in-out;
 }
-
-.project-card:hover {
-    z-index: 1;
-    transform: scale(1.04);
-    box-shadow: 0px 0px 10px black;
-
+@media (hover: hover) {
+    .project-card:hover {
+        z-index: 1;
+        transform: scale(1.04);
+        box-shadow: 0px 0px 10px black;
+    }
 }
 
 .project-card img {
@@ -192,16 +214,22 @@
 
 .project-card h2 {
     margin: 10px;
+    height: 35px;
+    line-height: 35px;
 }
 
 .project-card p {
-    display: none;
     margin: 10px;
 }
+@media (hover: hover) {
+    .project-card p {
+        display: none;
+    }
 
-.project-card:hover p {
-    display: block;
-    margin: 10px;
+    .project-card:hover p {
+        display: block;
+        margin: 10px;
+    }
 }
 
 .icon-card-set {
@@ -220,6 +248,7 @@
 .icon-card {
     width: 100%;
     height: fit-content;
+    border-radius: var(--card-border-radius);
 }
 
 a.icon-card {

@@ -1,5 +1,5 @@
 import { initCopyClipboardButtons } from "/scripts/PageBuilder.js";
-import { fadeInPage, applySetupUtilities } from "/scripts/ElementUtilities.js";
+import { fadeInPage, applySetupUtilities, registerScalingText } from "/scripts/ElementUtilities.js";
 import { getFavoriteProjects } from "/scripts/ProjectUtilities.js";
 
 document.addEventListener("DOMContentLoaded", init);
@@ -26,7 +26,7 @@ function buildProjectCardSet(projects) {
                             alt="Thumbnail image for ${ project.name } project.">
                     </div>
                 </div>
-                <h2>
+                <h2 class="shrink-scale-text">
                     ${ project.name }
                 </h2>
                 <p>
@@ -36,4 +36,6 @@ function buildProjectCardSet(projects) {
         </div>
         `;
     }
+
+    registerScalingText();
 }
