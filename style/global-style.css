@@ -632,13 +632,14 @@ img.pixel-art {
     font-size: 100px;
     display: block;
     width: max-content;
-    padding: 4px 20px;
     color: black;
     font-weight: bold;
     background-color: var(--secondary-color-light);
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
+    padding: 4px 20px;
     margin-top: 40px;
     margin-bottom: 80px;
+    border-radius: var(--border-radius-medium);
 }
 @media only screen and (max-width: 900px) {
     #secondary-page-text-banner {
