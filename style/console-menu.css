@@ -3,11 +3,27 @@
     padding: 50px;
 }
 
+#console-menu-header > img {
+    width: min(410px, 100%);
+}
+
 #conu-page-image {
     display: block;
     margin: auto;
+    width: min(470px, 100%);
+    min-width: none;
 }
 
 #conu-demonstration img {
     height: 30vw;
+}
+@media only screen and (max-width: 900px) {
+    #conu-demonstration img {
+        height: 50vw;
+    }
+}
+@media only screen and (max-width: 500px) {
+    #conu-demonstration img {
+        height: 80vw;
+    }
 }
