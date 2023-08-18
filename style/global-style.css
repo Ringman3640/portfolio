@@ -364,6 +364,41 @@ div.project-info-group {
 }
 
 
+/* Responsive Elements */
+.full-text {
+    display: initial;
+}
+@media only screen and (max-width: 900px) {
+    .full-text {
+        display: none;
+    }
+}
+
+.short-text {
+    display: none;
+}
+@media only screen and (max-width: 900px) {
+    .short-text {
+        display: initial;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .short-text {
+        display: none;
+    }
+}
+
+
+.shortest-text {
+    display: none;
+}
+@media only screen and (max-width: 500px) {
+    .shortest-text {
+        display: initial;
+    }
+}
+
+
 /* Effects */
 .grow-shade-on-hover {
     z-index: 0;
