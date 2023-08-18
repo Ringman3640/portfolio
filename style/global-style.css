@@ -64,7 +64,7 @@ Author: Franz Alarcon
     --secondary-color-pale: #fad8df;
     --primary-background-color: white;
 
-    --pale-background: rgb(221, 221, 221);
+    --pale-background: rgb(230, 230, 230);
 
     --default-padding-size: 8px;
 
@@ -75,6 +75,10 @@ Author: Franz Alarcon
 
     --nav-bar-text-size: 30px;
     --nav-bar-size-margin: 40px;
+
+    --border-radius-large: 20px;
+    --border-radius-medium: 10px;
+    --border-radius-small: 6px;
 }
 
 /*
@@ -170,15 +174,6 @@ p {
     margin-bottom: 30px;
 }
 
-.main-section-group > h3 {
-    color: var(--primary-color-dark);
-}
-
-div.section-underline {
-    width: min(400px, 100%);
-    border-bottom: solid 2px var(--secondary-color-light);
-}
-
 div.section-row-combiner {
     display: flex;
     gap: 10px;
@@ -189,9 +184,12 @@ div.section-row-combiner > div {
 }
 
 div.project-info-container {
+    background-color: var(--pale-background);
     display: flex;
     justify-content: space-between;
     gap: 40px;
+    padding: var(--default-padding-size);
+    border-radius: var(--border-radius-large);
 }
 @media only screen and (max-width: 900px) {
     div.project-info-container {
@@ -199,13 +197,13 @@ div.project-info-container {
     }
 }
 
-
 div.project-info-group {
     width: 500px;
 }
-
-div.project-info-group div.section-underline {
-    width: 100%;
+@media only screen and (max-width: 900px) {
+    div.project-info-group {
+        width: 100%;
+    }
 }
 
 .project-info-listing {
@@ -264,7 +262,7 @@ div.project-info-group div.section-underline {
     font-weight: normal;
     text-align: center;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: var(--border-radius-medium);
     padding: 10px;
     transition: all 0.1s linear;
     cursor: pointer;
@@ -276,6 +274,11 @@ div.project-info-group div.section-underline {
 
 .button-1:hover, .button-2:hover {
     filter: brightness(50%);
+}
+
+.button-1:active, .button-2:active {
+    transform: translate(0px, var(--pop-shadow-offset));
+    box-shadow: 0px 0px 0px var(--primary-color-dark);
 }
 
 .button-1 {
@@ -300,11 +303,22 @@ div.project-info-group div.section-underline {
 
 .main-section-header {
     background-color: var(--primary-color-light);
-    box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
     color: white;
-    font-size: 36px;
+    width: fit-content;
     padding: 4px var(--popped-text-side-padding);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0px var(--pop-shadow-offset) 0px var(--primary-color-dark);
+    border-radius: var(--border-radius-small);
+}
+
+.section-title {
+    color: var(--primary-color-dark);
+    font-weight: 500;
+}
+
+.subsection-title {
+    color: var(--primary-color-light);
+    font-weight: normal;
 }
 
 #resources-container {
@@ -363,19 +377,22 @@ div.project-info-group div.section-underline {
 div.image-gallery-container {
     background-color: var(--secondary-color-light);
     padding: var(--default-padding-size);
-    border-radius: 20px;
+    border-radius: var(--border-radius-large);
 }
 
 .image-gallery-container > h3, .image-gallery-container > h2 {
-    margin-top: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: fit-content;
+    padding: var(--default-padding-size);
     margin-bottom: 4px;
+    border-radius: var(--border-radius-large);
 }
 
 div.image-gallery {
     display: flex;
     flex-wrap: wrap;
     gap: 3px;
-    border-radius: 20px;
+    border-radius: var(--border-radius-large);
     overflow: hidden;
 }
 
@@ -385,7 +402,7 @@ div.image-gallery {
     width: var(--image-gallery-item-length);
     height: var(--image-gallery-item-length);
     flex-grow: 1;
-    border-radius: 12px;
+    border-radius: var(--border-radius-medium);
     cursor: pointer;
     overflow: hidden;
 }
