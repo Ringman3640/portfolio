@@ -64,7 +64,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: var(--border-radius-medium);
     box-shadow: 0px var(--pop-shadow-offset) 0px var(--secondary-color-dark);
+}
+@media only screen and (max-width: 500px) {
+    #home-banner-img {
+        border-radius: 0px 0px var(--border-radius-medium) var(--border-radius-medium);
+    }
 }
 
 #home-banner-text {
@@ -92,6 +98,7 @@
     font-size: 10px;
     display: block;
     padding: 4px 20px;
+    border-radius: var(--border-radius-medium);
 }
 @media only screen and (max-width: 900px) {
     #home-banner-text-intro,
