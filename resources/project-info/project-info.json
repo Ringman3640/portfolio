@@ -28,6 +28,15 @@
             "thumbnailURL": "/resources/images/project-thumbnails/carla-platoon-thumbnail.png"
         },
         {
+            "name": "PowerMeter",
+            "pageURL": "/projects/powermeter.html",
+            "shortDescription": "An addon program for the game Golf It! to add additional control options.",
+            "longDescription": "An addon program for the game Golf It! to add additional control options. Improves game accessibility and ease-of-use.",
+            "projectType": "Individual Project",
+            "completeYear": "2022",
+            "thumbnailURL": "/resources/images/project-thumbnails/powermeter-thumbnail.png"
+        },
+        {
             "name": "",
             "pageURL": "/projects/TEMP.html",
             "shortDescription": "",
@@ -49,7 +58,7 @@
             "name": "CARLA Platoon System"
         },
         {
-            "name": "CARLA Platoon System"
+            "name": "PowerMeter"
         }
     ]
 }

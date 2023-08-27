@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PowerMeter</title>
+        <link rel="stylesheet" href="/style/global-style.css">
+        <link rel="stylesheet" href="/style/powermeter.css">
+        <script type="module" src="./powermeter.js"></script>
+    </head>
+
+    <body>
+        <div id="page-hider"></div>
+
+        <header id="nav-bar-container"></header>
+
+        <header id="powermeter-header" class="header-section">
+            <img class="page-banner" 
+                src="/resources/images/powermeter-project/header-banner-narrow.png"
+                alt="Banner image for the PowerMeter project page.">
+        </header>
+
+        <main id="powermeter-main" class="main-section">
+
+            <img id="powermeter-cover-img"
+                src="/resources/images/powermeter-project/cover-image.gif"
+                alt="PowerMeter project page image"
+                class="center-image">
+
+            <p><br></p>
+
+            <div id="resources-region">
+                <h2 class="section-title">Resources</h2>
+                <div id="resources-container">
+                    <a href="https://github.com/Ringman3640/PowerMeter"
+                        target="_blank"
+                        class="button-2">
+                        <div>
+                            <p>
+                                GitHub Page
+                            </p>
+                        </div>
+                    </a>
+                    <a href="https://store.steampowered.com/app/571740/Golf_It/"
+                        target="_blank"
+                        class="button-2">
+                        <div>
+                            <p>
+                                Golf It!
+                            </p>
+                        </div>
+                    </a>
+
+                    <div id="virtual-tour-startup-container"></div>
+                </div>
+            </div>
+
+            <p><br></p>
+
+            <div class="project-info-container main-section-group">
+                <div id="*TEMP*-overview" class="project-info-group">
+                    <h2 class="section-title">Overview</h2>
+                    <div class="project-info-listing">
+                        <div class="row">
+                            <h3 class="subsection-title">Project Type</h3>
+                            <ul>
+                                <li>Personal Project</li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <h3 class="subsection-title">Development Period</h3>
+                            <ul>
+                                <li>1 Month</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="*TEMP*-tools" class="project-info-group">
+                    <h2 class="section-title">Tools Used</h2>
+                    <div class="project-info-listing">
+                        <div class="row">
+                            <h3 class="subsection-title">Code Editor</h3>
+                            <ul>
+                                <li>Visual Studio Code</li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <h3 class="subsection-title">Language</h3>
+                            <ul>
+                                <li>AutoHotkey</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p><br></p>
+
+
+            <div id="powermeter-description" class="main-section-group">
+                <h2 class="section-title">Description</h2>
+                <p>
+                    PowerMeter is an addon for the 3D golfing game, Golf It! The
+                    addon provides users with a meter bar to reliably control
+                    the power of their in-game swing. This improves the game's
+                    accessibility and ease-of-use for mouse and keyboard users.
+                    <br><br>
+
+                    The PowerMeter program was developed as a personal project
+                    to practice and apply the GUI functionality of the
+                    AutoHotkey scripting language. It was developed and released
+                    in July of 2022.
+                </p>
+            </div>
+
+            <div id="powermeter-how-it-works" class="main-section-group">
+                <h2 class="section-title">How It Works</h2>
+                <p>
+                    The power meter has two input modes: keyboard input and
+                    mouse input. With keyboard input, the power bar level is
+                    controlled with left and right keybinds, which are the left
+                    and right arrow keys by default. A swing can then be
+                    activated by pressing the dedicated swing key, which is Z by
+                    default. 
+                    <br><br>
+
+                    With the mouse input mode, the power bar level is controlled
+                    by moving the mouse up and down. A swing is initiated by
+                    clicking the windup initiation button, which is right click
+                    by default. After setting the power bar level by moving the
+                    mouse, clicking the windup confirm button will trigger the
+                    swing, which is left click by default.
+                    <br><br>
+
+                    Internally, the program uses evilC's
+                    <a href="https://www.autohotkey.com/boards/viewtopic.php?t=10159" target="_blank">MouseDelta</a> 
+                    library to read any mouse inputs and translate those values
+                    into power bar level modifications. To emulate the user
+                    swinging the club, the program will make calls to the
+                    mouse_event DLL function from the Windows API. This call is
+                    repeated for a certain number of loops based on the measured
+                    power bar level.
+                </p>
+            </div>
+
+            <div id="powermeter-development-issues" class="main-section-group">
+                <h2 class="section-title">Development Issues</h2>
+
+                <h3 class="subsection-title">Messy GUI Implementation</h3>
+                <p>
+                    This program was my first attempt at a true GUI program. My
+                    nonexistent experience in designing user interfaces
+                    programmatically made by code very messy and difficult to
+                    maintain. The major pitfall I fell into was defining UI
+                    functions and state in the global namespace instead of in
+                    dedicated classes to prevent naming collisions and name
+                    clutter.
+                    <br><br>
+                </p>
+
+                <h3 class="subsection-title">Failed Custom DLL Hook</h3>
+                <p>
+                    I wanted to create a custom DLL hook to disable lateral
+                    mouse inputs during the mouse windup sequence for a more
+                    smooth user experience. However, I failed at implementing
+                    the behavior I wanted as I was unable to find the specific
+                    thread responsible for handling inputs in the game.
+                </p>
+            </div>
+
+            <div id="powermeter-" class="main-section-group">
+                <h2 class="section-title">What I Learned</h2>
+                <h3 class="subsection-title">Importance of Abstraction</h3>
+                <p>
+                    Since I defined all state variables and UI functions in the
+                    global namespace, all the symbols were visible in all
+                    contexts, making development and maintenance very difficult.
+                    This setback provided me with experience on why abstraction
+                    is very important.
+                    <br><br>
+                </p>
+
+                <h3 class="subsection-title">Basic GUI Experience</h3>
+                <p>
+                    Using the GUI tools provided by AutoHotkey taught me some
+                    very general UI development skills. Although I did not
+                    develop a very complex UI, the decision-making process I
+                    used gave good beginner experience.
+                </p>
+            </div>
+
+        </main>
+
+    </body>
+</html>
