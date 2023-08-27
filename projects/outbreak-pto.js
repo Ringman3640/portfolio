@@ -38,9 +38,13 @@ function init() {
     unusedGallery.loadImages("./outbreak-pto/unused-gallery.json");
 
     // Build virtual tour
+    // Currently disabled because I really don't like the way I sound. I will
+    //     re-record it soon.
+    /*
     virtualTour.buildVirtualTour("../resources/audio/outbreak-pto-project/"
             + "outbreak-pto-page-narration.mp3");
     virtualTour.loadEvents("./outbreak-pto/events.json");
+    */
 
     // Fade in page contents
     fadeInPage();
